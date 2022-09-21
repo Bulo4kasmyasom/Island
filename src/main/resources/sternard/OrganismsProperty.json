@@ -1,0 +1,298 @@
+{
+  "Wolf": {
+    "name": "Wolf",
+    "icon": "\uD83D\uDC01",
+    "organismType" : "carnivore",
+    "weight": 50.0,
+    "maxOnCell": 30,
+    "speed": 3,
+    "energy": 100.0,
+    "maxFoodForSatiety": 8.0,
+    "possibleFood" : {
+      "Horse" : 10,
+      "Deer" : 15,
+      "Rabbit" : 60,
+      "Mouse" : 80,
+      "Goat" : 60,
+      "Sheep" : 70,
+      "Boar" : 15,
+      "Buffalo" : 10,
+      "Duck" : 40
+    }
+  },
+  "Snake": {
+    "name": "Snake",
+    "icon": "\uD83D\uDC0D",
+    "organismType" : "herbivore",
+    "weight": 15.0,
+    "maxOnCell": 30,
+    "speed": 1,
+    "energy": 100.0,
+    "maxFoodForSatiety": 3.0,
+    "possibleFood" : {
+      "Fox" : 15,
+      "Rabbit" : 20,
+      "Mouse" : 40,
+      "Duck" : 10
+    }
+  },
+  "Sheep": {
+    "name": "Sheep",
+    "icon": "\uD83D\uDC11",
+    "organismType" : "herbivore",
+    "weight": 70.0,
+    "maxOnCell": 140,
+    "speed": 3,
+    "energy": 100.0,
+    "maxFoodForSatiety": 15.0,
+    "possibleFood" : {
+      "Sprig" : 80,
+      "Tree" : 80,
+      "Chestnut" : 80
+    }
+  },
+  "Rabbit": {
+    "name": "Rabbit",
+    "icon": "\uD83D\uDC07",
+    "organismType" : "herbivore",
+    "weight": 2.0,
+    "maxOnCell": 150,
+    "speed": 2,
+    "energy": 100.0,
+    "maxFoodForSatiety": 0.45,
+    "possibleFood" : {
+      "Horse" : 10,
+      "Deer" : 15,
+      "Rabbit" : 60,
+      "Mouse" : 80,
+      "Goat" : 60,
+      "Sheep" : 70,
+      "Boar" : 15,
+      "Buffalo" : 10,
+      "Duck" : 40
+    }
+  },
+  "Mouse": {
+    "name": "Mouse",
+    "icon": "\uD83D\uDC01",
+    "organismType" : "herbivore",
+    "weight": 0.05,
+    "maxOnCell": 500,
+    "speed": 1,
+    "energy": 100.0,
+    "maxFoodForSatiety": 0.01,
+    "possibleFood" : {
+      "Chestnut" : 80,
+      "Mushroom" : 90,
+      "Caterpillar" : 90
+    }
+  },
+  "Horse": {
+    "name": "Horse",
+    "icon": "\uD83D\uDC0E",
+    "organismType" : "herbivore",
+    "weight": 400.0,
+    "maxOnCell": 20,
+    "speed": 4,
+    "energy": 100.0,
+    "maxFoodForSatiety": 60.0,
+    "possibleFood" : {
+      "Mushroom" : 90,
+      "Spike" : 80,
+      "Sprig" : 80
+    }
+  },
+  "Goat": {
+    "name": "Goat",
+    "icon": "\uD83D\uDC10",
+    "organismType" : "herbivore",
+    "weight": 60.0,
+    "maxOnCell": 140,
+    "speed": 3,
+    "energy": 100.0,
+    "maxFoodForSatiety": 10.0,
+    "possibleFood" : {
+      "Mushroom" : 70,
+      "Spike" : 90,
+      "Sprig" : 70
+    }
+  },
+  "Fox": {
+    "name": "Fox",
+    "icon": "\uD83E\uDD8A",
+    "organismType" : "carnivore",
+    "weight": 8.0,
+    "maxOnCell": 30,
+    "speed": 2,
+    "energy": 100.0,
+    "maxFoodForSatiety": 2.0,
+    "possibleFood" : {
+      "Rabbit" : 70,
+      "Mouse" : 90,
+      "Duck" : 60,
+      "Caterpillar" : 40
+    }
+  },
+  "Eagle": {
+    "name": "Eagle",
+    "icon": "\uD83E\uDD85",
+    "organismType" : "carnivore",
+    "weight": 6.0,
+    "maxOnCell": 20,
+    "speed": 3,
+    "energy": 100.0,
+    "maxFoodForSatiety": 1.0,
+    "possibleFood" : {
+      "Fox" : 10,
+      "Rabbit" : 90,
+      "Mouse" : 90,
+      "Duck" : 80
+    }
+  },
+  "Duck": {
+    "name": "Duck",
+    "icon": "\uD83E\uDD86",
+    "organismType" : "herbivore",
+    "weight": 1.0,
+    "maxOnCell": 200,
+    "speed": 4,
+    "energy": 100.0,
+    "maxFoodForSatiety": 0.15,
+    "possibleFood" : {
+      "Spike" : 70,
+      "Sprig" : 50,
+      "Caterpillar" : 90
+    }
+  },
+  "Deer": {
+    "name": "Deer",
+    "icon": "\uD83E\uDD8C",
+    "organismType" : "herbivore",
+    "weight": 300.0,
+    "maxOnCell": 20,
+    "speed": 4,
+    "energy": 100.0,
+    "maxFoodForSatiety": 50.0,
+    "possibleFood" : {
+      "Chestnut" : 50,
+      "Mushroom" : 80,
+      "Spike" : 70,
+      "Sprig" : 80
+    }
+  },
+  "Caterpillar": {
+    "name": "Caterpillar",
+    "icon": "\uD83D\uDC1B",
+    "organismType" : "herbivore",
+    "weight": 0.01,
+    "maxOnCell": 1000,
+    "speed": 0,
+    "energy": 100.0,
+    "maxFoodForSatiety": 0.003,
+    "possibleFood" : {
+      "Chestnut": 70,
+      "Mushroom": 80,
+      "Spike": 70,
+      "Sprig": 70,
+      "Palm": 60,
+      "Tree": 40
+    }
+  },
+  "Buffalo": {
+    "name": "Buffalo",
+    "icon": "\uD83D\uDC03",
+    "organismType" : "herbivore",
+    "weight": 700.0,
+    "maxOnCell": 10,
+    "speed": 3,
+    "energy": 100.0,
+    "maxFoodForSatiety": 100.0,
+    "possibleFood" : {
+      "Chestnut" : 70,
+      "Mushroom" : 70,
+      "Spike" : 50
+    }
+  },
+  "Boar": {
+    "name": "Boar",
+    "icon": "\uD83D\uDC17",
+    "organismType" : "carnivore",
+    "weight": 400.0,
+    "maxOnCell": 50,
+    "speed": 2,
+    "energy": 100.0,
+    "maxFoodForSatiety": 50.0,
+    "possibleFood" : {
+      "Mouse" : 50,
+      "Caterpillar" : 90,
+      "Chestnut" : 70,
+      "Spike" : 50,
+      "Palm" : 40,
+      "Tree" : 80
+    }
+  },
+  "Bear": {
+    "name": "Bear",
+    "icon": "\uD83D\uDC3B",
+    "organismType" : "carnivore",
+    "weight": 500.0,
+    "maxOnCell": 5,
+    "speed": 2,
+    "energy": 100.0,
+    "maxFoodForSatiety": 80.0,
+    "possibleFood" : {
+      "Snake" : 80,
+      "Horse" : 40,
+      "Deer" : 80,
+      "Rabbit" : 80,
+      "Mouse" : 90,
+      "Goat" : 70,
+      "Sheep" : 70,
+      "Boar" : 50,
+      "Buffalo" : 20,
+      "Duck" : 10
+    }
+  },
+  "Tree": {
+    "name": "Tree",
+    "icon": "\uD83C\uDF33",
+    "organismType" : "tree",
+    "weight": 4.0,
+    "maxOnCell": 5
+  },
+  "Sprig": {
+    "name": "Sprig",
+    "icon": "\uD83C\uDF3F",
+    "organismType" : "sprig",
+    "weight": 2.0,
+    "maxOnCell": 100
+  },
+  "Palm": {
+    "name": "Palm",
+    "icon": "\uD83C\uDF34",
+    "organismType" : "palm",
+    "weight": 4.0,
+    "maxOnCell": 10
+  },
+  "Chestnut": {
+    "name": "Chestnut",
+    "icon": "\uD83C\uDF30",
+    "organismType" : "chestnut",
+    "weight": 3.0,
+    "maxOnCell": 10
+  },
+  "Mushroom": {
+    "name": "Mushroom",
+    "icon": "\uD83C\uDF44",
+    "organismType" : "mushroom",
+    "weight": 2.0,
+    "maxOnCell": 10
+  },
+  "Spike": {
+    "name": "Spike",
+    "icon": "\uD83C\uDF3E",
+    "organismType" : "spike",
+    "weight": 1.0,
+    "maxOnCell": 10
+  }
+}

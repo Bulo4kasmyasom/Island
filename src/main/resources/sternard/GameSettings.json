@@ -1,0 +1,39 @@
+{
+  "pathToOrganismsProperty": "src/main/resources/sternard/organismsproperty.json",
+  "pathToFolderWithOrganisms": "ru.javarush.island.sternard.organisms.",
+  "pathToFolderWithActions": "ru.javarush.island.sternard.actions.",
+  "methodNameAction": "action",
+  "widthMap": 100,
+  "heightMap": 20,
+  "minEnergyToDie": 20,
+  "reduceEnergyPercent": 10.0,
+  "increaseEnergyPercent": 30.0,
+  "plantGrowTime": 100,
+  "showStatisticsPeriod": 100,
+  "drawStatisticCoefficient": 2,
+  "drawStatisticSymbol": "\u2592",
+  "drawStatisticTextColor": "\u001B[1;94m",
+  "drawStatisticColor": "\u001B[1;93m",
+  "maxAnimalCountInCell": 10,
+  "maxNumberOfDays": 500,
+  "actions": {
+    "reproduce": 80,
+    "eat": 70,
+    "relax": 50,
+    "move": 75
+  },
+  "directionsToMove": [
+    "up",
+    "down",
+    "right",
+    "left",
+    "up_right",
+    "up_left",
+    "down_right",
+    "down_left"
+  ],
+  "organismType": {
+    "plant" : ["tree", "sprig", "palm", "chestnut", "mushroom", "spike"],
+    "animal": ["carnivore", "herbivore"]
+  }
+}
