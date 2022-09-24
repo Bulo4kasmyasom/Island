@@ -1,12 +1,12 @@
 {
-  "pathToOrganismsProperty": "src/main/resources/sternard/organismsproperty.json",
+  "pathToOrganismsProperty": "src/main/resources/sternard/OrganismsProperty.json",
   "pathToFolderWithOrganisms": "ru.javarush.island.sternard.organisms.",
   "pathToFolderWithActions": "ru.javarush.island.sternard.actions.",
   "methodNameAction": "action",
   "widthMap": 100,
   "heightMap": 20,
   "minEnergyToDie": 20,
-  "reduceEnergyPercent": 10.0,
+  "reduceEnergyPercent": 30.0,
   "increaseEnergyPercent": 30.0,
   "plantGrowTime": 100,
   "showStatisticsPeriod": 100,
@@ -14,13 +14,13 @@
   "drawStatisticSymbol": "\u2592",
   "drawStatisticTextColor": "\u001B[1;94m",
   "drawStatisticColor": "\u001B[1;93m",
-  "maxAnimalCountInCell": 10,
+  "maxAnimalCountInCell": 5,
   "maxNumberOfDays": 500,
   "actions": {
-    "reproduce": 80,
-    "eat": 70,
-    "relax": 50,
-    "move": 75
+    "reproduce": 40,
+    "eat": 100,
+    "relax": 40,
+    "move": 80
   },
   "directionsToMove": [
     "up",
