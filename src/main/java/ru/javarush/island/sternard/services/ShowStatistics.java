@@ -1,15 +1,11 @@
 package ru.javarush.island.sternard.services;
 
+import lombok.AllArgsConstructor;
 import ru.javarush.island.sternard.controller.Controller;
 import ru.javarush.island.sternard.view.printStatisticsToConsole;
-
+@AllArgsConstructor
 public class ShowStatistics {
     private final Controller controller;
-
-    public ShowStatistics(Controller controller) {
-        this.controller = controller;
-    }
-
     public Runnable showStatisticsTask() {
         return () ->
         {

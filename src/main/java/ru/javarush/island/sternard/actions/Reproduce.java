@@ -10,20 +10,20 @@ import java.util.List;
 
 import static ru.javarush.island.sternard.controller.Controller.isSameOrganisms;
 
-@SuppressWarnings({"UnusedDeclaration"}) // reflection api used this class and method
+@SuppressWarnings({"UnusedDeclaration"}) // reflection api use this class and method
 public class Reproduce {
     public void action(Animal animal, Cell cell) {
         List<Animal> animalsInCell = cell.getAnimals();
         long similarAnimals = animalsInCell.stream()
                 .filter(o -> isSameOrganisms(animal, o))
                 .count();
-        Integer reproduceChance = Settings.get().getActions().get("reproduce");
-        int randomChanceIndex = Randomizer.get(100);
-        if ((similarAnimals > 1) && (reproduceChance > randomChanceIndex)) {
+        int  reproduceChance = Settings.get().getActions().get("reproduce");
+        int randomChanceToReproduce = Randomizer.get(100);
+        if ((similarAnimals > 1) && (reproduceChance > randomChanceToReproduce)) {
             Animal newAnimal = (Animal) OrganismFactory.createOrganism(animal.getClass().getSimpleName());
             cell.addOrganism(newAnimal);
+            double reduceAnimalEnergy = animal.reduceAnimalEnergy(animal);
+            animal.setEnergy(reduceAnimalEnergy);
         }
-        double reduceAnimalEnergy = animal.reduceAnimalEnergy(animal);
-        animal.setEnergy(reduceAnimalEnergy);
     }
 }

@@ -12,8 +12,14 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static ru.javarush.island.sternard.constant.lang.English.*;
+
 public class printStatisticsToConsole {
     private final Controller controller;
+    private final String textColor = Settings.get().getTextColorStatisticKey();
+    private final String drawStatisticTextColor = Settings.get().getStatisticTextColorDay();
+    private final String textColorStatisticValue = Settings.get().getTextColorStatisticValue();
+    private final int statisticColumns = Settings.get().getStatisticColumns();
 
     public printStatisticsToConsole(Controller controller) {
         this.controller = controller;
@@ -23,7 +29,6 @@ public class printStatisticsToConsole {
         Map<String, Organism> organismMapFromJson = OrganismFactory.organismMapFromJson();
         Map<String, Integer> statistics = new ConcurrentHashMap<>();
         List<Organism> allOrganisms = new CopyOnWriteArrayList<>();
-
         this.statisticCollect(statistics, allOrganisms);
         this.printStatisticChart(organismMapFromJson, statistics);
         this.printStatisticAllOrganismsCount(allOrganisms);
@@ -31,20 +36,14 @@ public class printStatisticsToConsole {
     }
 
     public void printStatisticChart(Map<String, Organism> organismMapFromJson, Map<String, Integer> statistics) {
-        String drawStatisticTextColor = Settings.get().getDrawStatisticTextColor();
-        System.out.printf(" %s--== DAY %3d ==--\033[0m \n\n", drawStatisticTextColor, controller.getDAY_NUMBER().get());
-
+        System.out.printf(" %s" + DAY_NUMBER + "\033[0m \n", drawStatisticTextColor, controller.getDAY_NUMBER().get());
+        int table = 0;
         for (Map.Entry<String, Integer> key : statistics.entrySet()) {
-            String drawStatisticColor = Settings.get().getDrawStatisticColor();
-            int maxNumberOfDays = Settings.get().getMaxNumberOfDays();
-            int maxAnimalCountInCell = Settings.get().getMaxAnimalCountInCell();
-            int drawStatisticCoefficient = Settings.get().getDrawStatisticCoefficient();
-            String drawStatisticSymbol = Settings.get().getDrawStatisticSymbol();
-            int coefficient = (maxNumberOfDays / maxAnimalCountInCell) * drawStatisticCoefficient;
-            String drawStatistic = drawStatisticSymbol.repeat(key.getValue() / coefficient);
+            if (table % statisticColumns == 0) System.out.println();
 
-            System.out.printf("%s %s %s\033[0m %d\n",
-                    organismMapFromJson.get(key.getKey()).getIcon(), drawStatisticColor, drawStatistic, key.getValue());
+            System.out.printf("%s %s%-10d\033[0m \t", organismMapFromJson.get(key.getKey()).getIcon(),
+                    textColorStatisticValue, key.getValue());
+            table++;
         }
     }
 
@@ -55,7 +54,6 @@ public class printStatisticsToConsole {
                 allOrganisms.addAll(cell.getOrganisms());
             }
         }
-
         for (Organism organism : allOrganisms) {
             String organismSimpleName = organism.getClass().getSimpleName();
             if (!statistics.containsKey(organismSimpleName))
@@ -66,16 +64,36 @@ public class printStatisticsToConsole {
     }
 
     public void printStatisticAllOrganismsCount(List<Organism> allOrganisms) {
-        //TODO not flexible, need refactoring
-        int allOrganismCount = allOrganisms.size();
-        long herbivoreCount = allOrganisms.stream().filter(o -> Objects.equals(o.getOrganismType(), "herbivore")).count();
-        long carnivoreCount = allOrganisms.stream().filter(o -> Objects.equals(o.getOrganismType(), "carnivore")).count();
+        long allOrganismCount = allOrganisms.size();
+        long herbivoreCount = allOrganisms.stream()
+                .filter(o -> Objects.equals(o.getOrganismType(), "herbivore"))
+                .count();
+        long carnivoreCount = allOrganisms.stream()
+                .filter(o -> Objects.equals(o.getOrganismType(), "carnivore"))
+                .count();
         long plants = allOrganismCount - (carnivoreCount + herbivoreCount);
+        int animalsDiedNumber = controller.getDiedOrganisms()
+                .values()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
         System.out.println();
-        System.out.println("Организмов: " + allOrganismCount);
-        System.out.println("Травоядных: " + herbivoreCount);
-        System.out.println("Хищников: " + carnivoreCount);
-        System.out.println("Растений: " + plants);
+        printToConsole(ORGANISMS, allOrganismCount);
+        printToConsole(HERBIVORES, herbivoreCount);
+        printToConsole(CARNIVORES, carnivoreCount);
+        printToConsole(PLANTS, plants);
+        printToConsole(DIED_ORGANISMS, animalsDiedNumber);
+        if(animalsDiedNumber>0) {
+            System.out.print(textColor + DIED_ORGANISMS + ": \033[0m");
+            controller.getDiedOrganisms().entrySet().stream()
+                    .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
+                    .limit(7)
+                    .forEach(k -> System.out.print(k.getKey() + "(" + textColorStatisticValue + k.getValue() + "\033[0m) "));
+        }
+    }
+
+    private void printToConsole(String text, long count) {
+        System.out.println(textColor + text + ": \033[0m" + textColorStatisticValue + count + "\033[0m");
     }
 
 }

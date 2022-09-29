@@ -1,7 +1,7 @@
 {
   "Wolf": {
     "name": "Wolf",
-    "icon": "\uD83D\uDC01",
+    "icon": "\uD83D\uDC3A",
     "organismType" : "carnivore",
     "weight": 50.0,
     "maxOnCell": 30,
@@ -17,6 +17,47 @@
       "Sheep" : 70,
       "Boar" : 15,
       "Buffalo" : 10,
+      "Duck" : 40
+    }
+  },
+  "Lion": {
+    "name": "Lion",
+    "icon": "\uD83E\uDD81",
+    "organismType" : "carnivore",
+    "weight": 250.0,
+    "maxOnCell": 40,
+    "speed": 5,
+    "energy": 100.0,
+    "maxFoodForSatiety": 10.0,
+    "possibleFood" : {
+      "Horse" : 40,
+      "Wolf" : 30,
+      "Deer" : 30,
+      "Rabbit" : 60,
+      "Mouse" : 80,
+      "Boar" : 15,
+      "Bear" : 10,
+      "Panther" : 40,
+      "Buffalo" : 35,
+      "Duck" : 40
+    }
+  },
+  "Panther": {
+    "name": "Panther",
+    "icon": "\uD80C\uDCEE",
+    "organismType" : "carnivore",
+    "weight": 70.0,
+    "maxOnCell": 30,
+    "speed": 5,
+    "energy": 100.0,
+    "maxFoodForSatiety": 8.0,
+    "possibleFood" : {
+      "Lion" : 30,
+      "Deer" : 15,
+      "Mouse" : 50,
+      "Goat" : 60,
+      "Boar" : 15,
+      "Buffalo" : 20,
       "Duck" : 40
     }
   },
@@ -186,12 +227,12 @@
     "organismType" : "herbivore",
     "weight": 0.01,
     "maxOnCell": 1000,
-    "speed": 0,
+    "speed": 1,
     "energy": 100.0,
     "maxFoodForSatiety": 0.003,
     "possibleFood" : {
-      "Chestnut": 70,
-      "Mushroom": 80,
+      "Chestnut": 50,
+      "Mushroom": 60,
       "Spike": 70,
       "Sprig": 70,
       "Palm": 60,
@@ -258,41 +299,41 @@
     "icon": "\uD83C\uDF33",
     "organismType" : "tree",
     "weight": 4.0,
-    "maxOnCell": 5
+    "maxOnCell": 10
   },
   "Sprig": {
     "name": "Sprig",
     "icon": "\uD83C\uDF3F",
     "organismType" : "sprig",
     "weight": 2.0,
-    "maxOnCell": 100
+    "maxOnCell": 20
   },
   "Palm": {
     "name": "Palm",
     "icon": "\uD83C\uDF34",
     "organismType" : "palm",
     "weight": 4.0,
-    "maxOnCell": 10
+    "maxOnCell": 35
   },
   "Chestnut": {
     "name": "Chestnut",
     "icon": "\uD83C\uDF30",
     "organismType" : "chestnut",
     "weight": 3.0,
-    "maxOnCell": 10
+    "maxOnCell": 20
   },
   "Mushroom": {
     "name": "Mushroom",
     "icon": "\uD83C\uDF44",
     "organismType" : "mushroom",
     "weight": 2.0,
-    "maxOnCell": 10
+    "maxOnCell": 50
   },
   "Spike": {
     "name": "Spike",
     "icon": "\uD83C\uDF3E",
     "organismType" : "spike",
     "weight": 1.0,
-    "maxOnCell": 10
+    "maxOnCell": 30
   }
 }

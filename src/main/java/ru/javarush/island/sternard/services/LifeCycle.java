@@ -1,15 +1,11 @@
 package ru.javarush.island.sternard.services;
 
+import lombok.AllArgsConstructor;
 import ru.javarush.island.sternard.controller.Controller;
 import ru.javarush.island.sternard.game.Cell;
-
+@AllArgsConstructor
 public class LifeCycle {
     private final Controller controller;
-
-    public LifeCycle(Controller controller) {
-        this.controller = controller;
-    }
-
     public Runnable lifeCycleService() {
         return () -> {
             for (int height = 0; height < controller.getHeight(); ++height) {
