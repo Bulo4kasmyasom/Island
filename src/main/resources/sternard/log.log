@@ -1,0 +1,323 @@
+INFO   	[2022-10-06 19:42:34,012] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+INFO   	[2022-10-06 19:44:21,156] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+ERROR  	[2022-10-06 19:44:21,165] [main] (OrganismFactory.java:76)
+		ru.javarush.island.sternard.organisms.Sheep.<init>(java.lang.String,double,int,java.lang.String,java.lang.String,java.util.Map,int,double,double)
+
+java.lang.NoSuchMethodException: ru.javarush.island.sternard.organisms.Sheep.<init>(java.lang.String,double,int,java.lang.String,java.lang.String,java.util.Map,int,double,double)
+	at java.lang.Class.getConstructor0(Class.java:3585) ~[?:?]
+	at java.lang.Class.getConstructor(Class.java:2271) ~[?:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewInstance(OrganismFactory.java:83) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewOrganism(OrganismFactory.java:68) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.createOrganism(OrganismFactory.java:48) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.getRandomOrganism(Controller.java:72) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.initGame(Controller.java:52) ~[classes/:?]
+	at ru.javarush.island.sternard.Runner.main(Runner.java:31) ~[classes/:?]
+INFO   	[2022-10-06 19:45:08,856] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+ERROR  	[2022-10-06 19:45:08,866] [main] (OrganismFactory.java:76)
+		ru.javarush.island.sternard.organisms.Boar.<init>(java.lang.String,double,int,java.lang.String,java.lang.String,java.util.Map,int,double,double)
+
+java.lang.NoSuchMethodException: ru.javarush.island.sternard.organisms.Boar.<init>(java.lang.String,double,int,java.lang.String,java.lang.String,java.util.Map,int,double,double)
+	at java.lang.Class.getConstructor0(Class.java:3585) ~[?:?]
+	at java.lang.Class.getConstructor(Class.java:2271) ~[?:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewInstance(OrganismFactory.java:83) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewOrganism(OrganismFactory.java:68) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.createOrganism(OrganismFactory.java:48) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.getRandomOrganism(Controller.java:72) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.initGame(Controller.java:52) ~[classes/:?]
+	at ru.javarush.island.sternard.Runner.main(Runner.java:31) ~[classes/:?]
+INFO   	[2022-10-06 19:46:29,179] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+INFO   	[2022-10-06 19:46:30,622] [main] (Controller.java:66)
+		initGame end. Created 210456 organisms. Init time: 1797 ms
+
+WARN   	[2022-10-06 19:46:42,647] [Thread-0] (Runner.java:46)
+		The game was emergency stopped, the simulation was not finished
+
+INFO   	[2022-10-06 20:08:18,762] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:09:06,930] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:11:13,013] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:14:22,918] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:16:22,181] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:16:52,962] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:23:44,145] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:28:16,895] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:40:19,633] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+ERROR  	[2022-10-06 20:40:19,646] [main] (OrganismFactory.java:96)
+		ru.javarush.island.sternard.organisms.Mushroom.<init>(java.lang.String,java.lang.Double,java.lang.Integer,java.lang.String,java.lang.String,java.lang.String)
+
+
+java.lang.NoSuchMethodException: ru.javarush.island.sternard.organisms.Mushroom.<init>(java.lang.String,java.lang.Double,java.lang.Integer,java.lang.String,java.lang.String,java.lang.String)
+	at java.lang.Class.getConstructor0(Class.java:3585) ~[?:?]
+	at java.lang.Class.getConstructor(Class.java:2271) ~[?:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewInstance(OrganismFactory.java:92) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewOrganism(OrganismFactory.java:73) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.createOrganism(OrganismFactory.java:48) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.getRandomOrganism(Controller.java:72) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.initGame(Controller.java:52) ~[classes/:?]
+	at ru.javarush.island.sternard.Runner.main(Runner.java:31) ~[classes/:?]
+INFO   	[2022-10-06 20:41:12,763] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:41:14,302] [main] (Controller.java:66)
+		initGame end. Created 203063 organisms. Init time: 1912 ms
+
+
+INFO   	[2022-10-06 20:41:56,021] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+ERROR  	[2022-10-06 20:41:56,077] [main] (OrganismFactory.java:96)
+		ru.javarush.island.sternard.organisms.Spike.<init>(java.lang.String,java.lang.Double,java.lang.Integer,java.lang.String,java.lang.String,java.lang.String)
+
+
+java.lang.NoSuchMethodException: ru.javarush.island.sternard.organisms.Spike.<init>(java.lang.String,java.lang.Double,java.lang.Integer,java.lang.String,java.lang.String,java.lang.String)
+	at java.lang.Class.getConstructor0(Class.java:3585) ~[?:?]
+	at java.lang.Class.getConstructor(Class.java:2271) ~[?:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewInstance(OrganismFactory.java:92) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewOrganism(OrganismFactory.java:73) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.createOrganism(OrganismFactory.java:48) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.getRandomOrganism(Controller.java:72) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.initGame(Controller.java:52) ~[classes/:?]
+	at ru.javarush.island.sternard.Runner.main(Runner.java:31) ~[classes/:?]
+INFO   	[2022-10-06 20:42:44,786] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:42:46,293] [main] (Controller.java:66)
+		initGame end. Created 205838 organisms. Init time: 1852 ms
+
+
+INFO   	[2022-10-06 20:43:52,497] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:45:19,168] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+ERROR  	[2022-10-06 20:45:19,195] [main] (OrganismFactory.java:96)
+		ru.javarush.island.sternard.organisms.Chestnut.<init>(java.lang.String,java.lang.Double,int,java.lang.String,java.lang.String,java.lang.String)
+
+
+java.lang.NoSuchMethodException: ru.javarush.island.sternard.organisms.Chestnut.<init>(java.lang.String,java.lang.Double,int,java.lang.String,java.lang.String,java.lang.String)
+	at java.lang.Class.getConstructor0(Class.java:3585) ~[?:?]
+	at java.lang.Class.getConstructor(Class.java:2271) ~[?:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewInstance(OrganismFactory.java:92) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewOrganism(OrganismFactory.java:73) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.createOrganism(OrganismFactory.java:48) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.getRandomOrganism(Controller.java:72) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.initGame(Controller.java:52) ~[classes/:?]
+	at ru.javarush.island.sternard.Runner.main(Runner.java:31) ~[classes/:?]
+INFO   	[2022-10-06 20:45:36,365] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+ERROR  	[2022-10-06 20:45:36,387] [main] (OrganismFactory.java:96)
+		ru.javarush.island.sternard.organisms.Spike.<init>(java.lang.String,java.lang.Double,int,java.lang.String,java.lang.String,java.lang.String)
+
+
+java.lang.NoSuchMethodException: ru.javarush.island.sternard.organisms.Spike.<init>(java.lang.String,java.lang.Double,int,java.lang.String,java.lang.String,java.lang.String)
+	at java.lang.Class.getConstructor0(Class.java:3585) ~[?:?]
+	at java.lang.Class.getConstructor(Class.java:2271) ~[?:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewInstance(OrganismFactory.java:92) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.getNewOrganism(OrganismFactory.java:73) ~[classes/:?]
+	at ru.javarush.island.sternard.game.OrganismFactory.createOrganism(OrganismFactory.java:48) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.getRandomOrganism(Controller.java:72) ~[classes/:?]
+	at ru.javarush.island.sternard.controller.Controller.initGame(Controller.java:52) ~[classes/:?]
+	at ru.javarush.island.sternard.Runner.main(Runner.java:31) ~[classes/:?]
+
+INFO   	[2022-10-06 20:47:44,673] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:47:46,159] [main] (Controller.java:66)
+		initGame end. Created 221719 organisms. Init time: 1895 ms
+
+
+INFO   	[2022-10-06 20:49:43,423] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:49:44,939] [main] (Controller.java:66)
+		initGame end. Created 196858 organisms. Init time: 1876 ms
+
+
+INFO   	[2022-10-06 20:52:11,985] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 20:52:13,535] [main] (Controller.java:66)
+		initGame end. Created 209626 organisms. Init time: 1932 ms
+
+
+INFO   	[2022-10-06 21:17:56,768] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-06 21:17:58,325] [main] (Controller.java:66)
+		initGame end. Created 220642 organisms. Init time: 1936 ms
+
+
+WARN   	[2022-10-06 21:17:59,809] [Thread-0] (Runner.java:46)
+		The game was emergency stopped, the simulation was not finished
+
+
+INFO   	[2022-10-07 10:51:45,531] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:18:59,292] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:19:00,827] [main] (Controller.java:66)
+		initGame end. Created 214912 organisms. Init time: 1956 ms
+
+
+INFO   	[2022-10-07 11:19:20,299] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:19:21,841] [main] (Controller.java:66)
+		initGame end. Created 206082 organisms. Init time: 1901 ms
+
+
+WARN   	[2022-10-07 11:19:33,277] [Thread-0] (Runner.java:46)
+		The game was emergency stopped, the simulation was not finished
+
+
+INFO   	[2022-10-07 11:19:51,531] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:19:53,065] [main] (Controller.java:66)
+		initGame end. Created 205087 organisms. Init time: 1892 ms
+
+
+INFO   	[2022-10-07 11:20:53,167] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:20:54,666] [main] (Controller.java:66)
+		initGame end. Created 212466 organisms. Init time: 1912 ms
+
+
+INFO   	[2022-10-07 11:21:19,428] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:21:21,016] [main] (Controller.java:66)
+		initGame end. Created 212115 organisms. Init time: 2192 ms
+
+
+WARN   	[2022-10-07 11:21:50,533] [Thread-0] (Runner.java:46)
+		The game was emergency stopped, the simulation was not finished
+
+
+INFO   	[2022-10-07 11:22:11,423] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:22:12,896] [main] (Controller.java:66)
+		initGame end. Created 213892 organisms. Init time: 1854 ms
+
+
+WARN   	[2022-10-07 11:22:29,158] [Thread-0] (Runner.java:46)
+		The game was emergency stopped, the simulation was not finished
+
+
+INFO   	[2022-10-07 11:22:53,412] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:22:54,899] [main] (Controller.java:66)
+		initGame end. Created 205165 organisms. Init time: 1835 ms
+
+
+INFO   	[2022-10-07 11:24:17,738] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:24:19,255] [main] (Controller.java:66)
+		initGame end. Created 214827 organisms. Init time: 1868 ms
+
+
+WARN   	[2022-10-07 11:24:45,147] [Thread-0] (Runner.java:46)
+		The game was emergency stopped, the simulation was not finished
+
+
+INFO   	[2022-10-07 11:24:46,898] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:24:48,432] [main] (Controller.java:66)
+		initGame end. Created 205701 organisms. Init time: 1948 ms
+
+
+INFO   	[2022-10-07 11:25:11,610] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:25:13,137] [main] (Controller.java:66)
+		initGame end. Created 196920 organisms. Init time: 1915 ms
+
+
+INFO   	[2022-10-07 11:26:38,493] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:26:40,004] [main] (Controller.java:66)
+		initGame end. Created 209164 organisms. Init time: 1862 ms
+
+
+INFO   	[2022-10-07 11:27:06,712] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:27:08,209] [main] (Controller.java:66)
+		initGame end. Created 219303 organisms. Init time: 1897 ms
+
+
+INFO   	[2022-10-07 11:27:22,397] [main] (Controller.java:46)
+		initGame start with 3 organisms in cell
+
+
+INFO   	[2022-10-07 11:27:23,944] [main] (Controller.java:66)
+		initGame end. Created 211201 organisms. Init time: 1915 ms
+
+
