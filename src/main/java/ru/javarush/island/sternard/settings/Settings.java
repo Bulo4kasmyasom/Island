@@ -10,6 +10,7 @@ import ru.javarush.island.sternard.organisms.*;
 import ru.javarush.island.sternard.organisms.parents.Organism;
 import ru.javarush.island.sternard.annotation.Check;
 import ru.javarush.island.sternard.utils.CheckInputData;
+import ru.javarush.island.sternard.utils.GameLogger;
 import ru.javarush.island.sternard.utils.PathFinder;
 
 import java.io.FileReader;
@@ -28,7 +29,7 @@ public class Settings {
     public String pathToOrganismsProperty;
 
     @Check(message = NOT_NULL_AND_NOT_EMPTY)
-    private String methodNameAction;
+    private String log4j2_properties;
 
     @Check(message = NOT_NULL_AND_NOT_EMPTY)
     private String textColorStatisticValue;
@@ -123,9 +124,12 @@ public class Settings {
             String validateSettings = CheckInputData.check(settingsFromJSON);
             if (validateSettings.isEmpty())
                 return settingsFromJSON;
-            else
+            else {
+                GameLogger.getLog().error(validateSettings);
                 throw new HandlerExceptions(validateSettings);
+            }
         } catch (IOException e) {
+            GameLogger.getLog().error(e.getMessage(), e);
             throw new HandlerExceptions(FILE_ERROR + pathToSettingsFile, e.getStackTrace());
         }
     }

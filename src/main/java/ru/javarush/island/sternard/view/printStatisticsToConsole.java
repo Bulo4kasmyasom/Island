@@ -30,16 +30,17 @@ public class printStatisticsToConsole {
         Map<String, Integer> statistics = new ConcurrentHashMap<>();
         List<Organism> allOrganisms = new CopyOnWriteArrayList<>();
         this.statisticCollect(statistics, allOrganisms);
-        this.printStatisticChart(organismMapFromJson, statistics);
+        System.out.printf(" %s" + DAY_NUMBER + "\033[0m \n", drawStatisticTextColor, controller.getDAY_NUMBER().get());
+        this.printStatisticTable(organismMapFromJson, statistics);
         this.printStatisticAllOrganismsCount(allOrganisms);
         System.out.println("\n");
     }
 
-    public void printStatisticChart(Map<String, Organism> organismMapFromJson, Map<String, Integer> statistics) {
-        System.out.printf(" %s" + DAY_NUMBER + "\033[0m \n", drawStatisticTextColor, controller.getDAY_NUMBER().get());
+    private void printStatisticTable(Map<String, Organism> organismMapFromJson, Map<String, Integer> statistics) {
         int table = 0;
         for (Map.Entry<String, Integer> key : statistics.entrySet()) {
-            if (table % statisticColumns == 0) System.out.println();
+            if (table % statisticColumns == 0)
+                System.out.println();
 
             System.out.printf("%s %s%-10d\033[0m \t", organismMapFromJson.get(key.getKey()).getIcon(),
                     textColorStatisticValue, key.getValue());
@@ -47,7 +48,7 @@ public class printStatisticsToConsole {
         }
     }
 
-    public void statisticCollect(Map<String, Integer> statistics, List<Organism> allOrganisms) {
+    private void statisticCollect(Map<String, Integer> statistics, List<Organism> allOrganisms) {
         for (int y = 0; y < controller.getHeight(); ++y) {
             for (int x = 0; x < controller.getWidth(); ++x) {
                 Cell cell = controller.getCells()[y][x];
@@ -63,7 +64,7 @@ public class printStatisticsToConsole {
         }
     }
 
-    public void printStatisticAllOrganismsCount(List<Organism> allOrganisms) {
+    private void printStatisticAllOrganismsCount(List<Organism> allOrganisms) {
         long allOrganismCount = allOrganisms.size();
         long herbivoreCount = allOrganisms.stream()
                 .filter(o -> Objects.equals(o.getOrganismType(), "herbivore"))
@@ -71,28 +72,38 @@ public class printStatisticsToConsole {
         long carnivoreCount = allOrganisms.stream()
                 .filter(o -> Objects.equals(o.getOrganismType(), "carnivore"))
                 .count();
-        long plants = allOrganismCount - (carnivoreCount + herbivoreCount);
+        long animalsCount = allOrganisms.stream()
+                .filter(o -> Objects.equals(o.getOrganismMainType(), "animal"))
+                .count();
+        long plantsCount = allOrganisms.stream()
+                .filter(o -> Objects.equals(o.getOrganismMainType(), "plant"))
+                .count();
         int animalsDiedNumber = controller.getDiedOrganisms()
                 .values()
                 .stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+        printToConsole(allOrganismCount, herbivoreCount, carnivoreCount, animalsCount, plantsCount, animalsDiedNumber);
+    }
+
+    private void printToConsole(long allOrganismCount, long herbivoreCount, long carnivoreCount, long animalsCount, long plantsCount, int animalsDiedNumber) {
         System.out.println();
-        printToConsole(ORGANISMS, allOrganismCount);
-        printToConsole(HERBIVORES, herbivoreCount);
-        printToConsole(CARNIVORES, carnivoreCount);
-        printToConsole(PLANTS, plants);
-        printToConsole(DIED_ORGANISMS, animalsDiedNumber);
-        if(animalsDiedNumber>0) {
+        printToConsoleFormat(ORGANISMS, allOrganismCount);
+        printToConsoleFormat(HERBIVORES, herbivoreCount);
+        printToConsoleFormat(CARNIVORES, carnivoreCount);
+        printToConsoleFormat(ANIMALS, animalsCount);
+        printToConsoleFormat(PLANTS, plantsCount);
+        printToConsoleFormat(DIED_ORGANISMS, animalsDiedNumber);
+        if (animalsDiedNumber > 0) {
             System.out.print(textColor + DIED_ORGANISMS + ": \033[0m");
             controller.getDiedOrganisms().entrySet().stream()
-                    .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
+                    .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue())) // sort by map value
                     .limit(7)
                     .forEach(k -> System.out.print(k.getKey() + "(" + textColorStatisticValue + k.getValue() + "\033[0m) "));
         }
     }
 
-    private void printToConsole(String text, long count) {
+    private void printToConsoleFormat(String text, long count) {
         System.out.println(textColor + text + ": \033[0m" + textColorStatisticValue + count + "\033[0m");
     }
 

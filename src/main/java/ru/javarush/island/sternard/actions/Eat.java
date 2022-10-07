@@ -4,6 +4,7 @@ import ru.javarush.island.sternard.game.Cell;
 import ru.javarush.island.sternard.organisms.parents.Animal;
 import ru.javarush.island.sternard.organisms.parents.Organism;
 import ru.javarush.island.sternard.settings.Settings;
+import ru.javarush.island.sternard.actions.interfaces.Eating;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,7 +13,7 @@ import java.util.List;
 import static ru.javarush.island.sternard.controller.Controller.isSameOrganisms;
 
 @SuppressWarnings({"UnusedDeclaration"}) // reflection api use this class and method
-public class Eat {
+public class Eat implements Eating {
     public void action(Animal animal, Cell cell) {
         List<Organism> possibleFoodInCellStream = cell.getOrganisms().stream()
                 .filter(o -> !isSameOrganisms(animal, o))

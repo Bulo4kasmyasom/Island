@@ -10,6 +10,7 @@ public class Organism {
     protected double weight;
     protected int maxOnCell;
     protected String icon;
+    protected String organismMainType;
     protected String organismType;
     protected int speed;
     protected double energy;
@@ -19,17 +20,18 @@ public class Organism {
     private Organism() {
     }
 
-    public Organism(String name, double weight, int maxOnCell, String icon, String organismType) {
+    public Organism(String name, double weight, int maxOnCell, String icon, String organismMainType, String organismType) {
         this.name = name;
         this.weight = weight;
         this.maxOnCell = maxOnCell;
         this.icon = icon;
         this.organismType = organismType;
+        this.organismMainType = organismMainType;
     }
 
-    public Organism(String name, double weight, int maxOnCell, String icon, String organismType,
+    public Organism(String name, double weight, int maxOnCell, String icon, String organismMainType, String organismType,
                     Map<String, Integer> possibleFood, int speed, double energy, double maxFoodForSatiety) {
-        this(name, weight, maxOnCell, icon, organismType);
+        this(name, weight, maxOnCell, icon, organismMainType, organismType);
         this.speed = speed;
         this.energy = energy;
         this.maxFoodForSatiety = maxFoodForSatiety;

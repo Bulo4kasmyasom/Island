@@ -7,9 +7,11 @@ import ru.javarush.island.sternard.game.OrganismFactory;
 import ru.javarush.island.sternard.organisms.parents.Organism;
 import ru.javarush.island.sternard.settings.Settings;
 import ru.javarush.island.sternard.utils.Randomizer;
+
 @AllArgsConstructor
 public class PlantGrow {
     private final Controller controller;
+
     public Runnable createPlantGrowTask() {
         return () -> {
             int w = Randomizer.get(controller.getWidth());

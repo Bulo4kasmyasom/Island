@@ -12,6 +12,7 @@ import static ru.javarush.island.sternard.constant.lang.English.ACCESS_FIELD_ERR
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CheckInputData {
+
     public static String check(Object object) {
         Class<?> objectClass = object.getClass();
         for (Field declaredField : objectClass.getDeclaredFields()) {
@@ -21,6 +22,7 @@ public class CheckInputData {
                 try {
                     fieldValue = declaredField.get(object);
                 } catch (IllegalAccessException e) {
+                    GameLogger.getLog().error(e.getMessage(), e);
                     throw new HandlerExceptions(ACCESS_FIELD_ERROR, e.getStackTrace());
                 }
                 Check annotationValue = declaredField.getAnnotation(Check.class);
@@ -28,8 +30,12 @@ public class CheckInputData {
                 if ((checkStrings(declaredField, fieldValue, annotationValue)) ||
                         (checkDigits(fieldValue, annotationValue)) ||
                         (checkMaps(fieldValue)) ||
-                        (checkStringArrays(fieldValue)))
-                    return declaredField.getAnnotation(Check.class).message() + " Field: " + declaredField.getName();
+                        (checkStringArrays(fieldValue))) {
+                    String message = declaredField.getAnnotation(Check.class).message() + " Field: " + declaredField.getName();
+
+                    GameLogger.getLog().error(message);
+                    return message;
+                }
             }
         }
         return "";
@@ -60,7 +66,6 @@ public class CheckInputData {
         if (fieldValue instanceof String val) {
             if (!annotationValue.isEmpty() && val.isEmpty())
                 return true;
-
             // valid:
             // path/to/file.json
             // file.json

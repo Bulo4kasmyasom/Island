@@ -15,17 +15,12 @@ public class HandlerExceptions extends RuntimeException {
         boolean exceptionShowStackTrace = Settings.get().isExceptionShowStackTrace();
         System.err.println(message);
         if (!exceptionShowStackTrace) {
-            System.exit(0); //
+            System.exit(0);
         } else {
             for (StackTraceElement stackTraceElement : stackTrace) {
                 System.out.println(stackTraceElement);
             }
         }
     }
-
-//    @Override
-//    public Throwable fillInStackTrace() {
-//        return this;
-//    }
 
 }

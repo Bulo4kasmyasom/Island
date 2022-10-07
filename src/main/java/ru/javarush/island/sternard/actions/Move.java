@@ -1,14 +1,15 @@
 package ru.javarush.island.sternard.actions;
 
+import ru.javarush.island.sternard.actions.interfaces.Moving;
 import ru.javarush.island.sternard.game.Cell;
 import ru.javarush.island.sternard.organisms.parents.Animal;
 import ru.javarush.island.sternard.settings.Settings;
 import ru.javarush.island.sternard.utils.Randomizer;
 
 @SuppressWarnings({"UnusedDeclaration"}) // reflection api use this class and method
-public class Move {
+public class Move implements Moving {
 
-    public synchronized void action(Animal animal, Cell cell, Cell[][] cells, int height, int width) {
+    public void action(Animal animal, Cell cell, Cell[][] cells, int height, int width) {
         int chanceToMoveRandom = Randomizer.get(100);
         int chanceToMove = Settings.get().getActions().get("move");
 

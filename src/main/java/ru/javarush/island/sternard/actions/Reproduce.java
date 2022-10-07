@@ -1,5 +1,6 @@
 package ru.javarush.island.sternard.actions;
 
+import ru.javarush.island.sternard.actions.interfaces.Reproducing;
 import ru.javarush.island.sternard.game.Cell;
 import ru.javarush.island.sternard.game.OrganismFactory;
 import ru.javarush.island.sternard.organisms.parents.Animal;
@@ -11,7 +12,7 @@ import java.util.List;
 import static ru.javarush.island.sternard.controller.Controller.isSameOrganisms;
 
 @SuppressWarnings({"UnusedDeclaration"}) // reflection api use this class and method
-public class Reproduce {
+public class Reproduce implements Reproducing {
     public void action(Animal animal, Cell cell) {
         List<Animal> animalsInCell = cell.getAnimals();
         long similarAnimals = animalsInCell.stream()
