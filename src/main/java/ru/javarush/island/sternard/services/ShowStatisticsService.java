@@ -2,15 +2,17 @@ package ru.javarush.island.sternard.services;
 
 import lombok.AllArgsConstructor;
 import ru.javarush.island.sternard.controller.Controller;
-import ru.javarush.island.sternard.view.printStatisticsToConsole;
+import ru.javarush.island.sternard.view.printToConsole;
+
 @AllArgsConstructor
-public class ShowStatistics {
+public class ShowStatisticsService {
     private final Controller controller;
-    public Runnable showStatisticsTask() {
+
+    public Runnable showStatisticsServiceStart() {
         return () ->
         {
             controller.getDAY_NUMBER().getAndIncrement();
-            new printStatisticsToConsole(controller).printStatistic();
+            new printToConsole(controller).printStatistic();
         };
     }
 }

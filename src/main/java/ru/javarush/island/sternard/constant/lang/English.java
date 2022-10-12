@@ -8,7 +8,8 @@ public interface English {
     String VALUE_MUST_BE = "Value must be ";
     String NOT_NULL_AND_NOT_EMPTY = VALUE_MUST_BE + "not null and not empty.";
     String INVALID_FILE_PATH = "Invalid file path.";
-    String DIED_ORGANISMS = "Died organisms";
+    String DIED_ORGANISMS_COUNT = "Dead organisms due to low energy";
+    String DIED_ORGANISMS_ENUMERATION = "Dead organisms due to low energy";
     String PLANTS = "Plants";
     String ANIMALS = "Animals";
     String CARNIVORES = "Carnivores";

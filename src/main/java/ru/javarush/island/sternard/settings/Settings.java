@@ -4,11 +4,16 @@ import com.google.gson.Gson;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.javarush.island.sternard.actions.*;
+import ru.javarush.island.sternard.actions.Eat;
+import ru.javarush.island.sternard.actions.Move;
+import ru.javarush.island.sternard.actions.Relax;
+import ru.javarush.island.sternard.actions.Reproduce;
+import ru.javarush.island.sternard.annotation.Check;
 import ru.javarush.island.sternard.exception.HandlerExceptions;
 import ru.javarush.island.sternard.organisms.*;
 import ru.javarush.island.sternard.organisms.parents.Organism;
-import ru.javarush.island.sternard.annotation.Check;
+import ru.javarush.island.sternard.result.Result;
+import ru.javarush.island.sternard.result.ResultCode;
 import ru.javarush.island.sternard.utils.CheckInputData;
 import ru.javarush.island.sternard.utils.GameLogger;
 import ru.javarush.island.sternard.utils.PathFinder;
@@ -24,6 +29,11 @@ import static ru.javarush.island.sternard.constant.lang.English.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Settings {
+    static {
+        //This line can be removed if LOG4J2.Properties will move in to resources
+        System.setProperty("log4j2.configurationFile", "src/main/resources/sternard/log4j2.properties");
+    }
+
     private static final String GAME_SETTINGS_JSON = "src/main/resources/sternard/GameSettings.json";
     @Check(message = INVALID_FILE_PATH)
     public String pathToOrganismsProperty;
@@ -40,16 +50,16 @@ public class Settings {
     @Check(message = NOT_NULL_AND_NOT_EMPTY)
     private String textColorStatisticKey;
 
-    @Check(minValue = 1,maxValue = 25, message = VALUE_MUST_BE + "1-25.")
+    @Check(minValue = 1, maxValue = 25, message = VALUE_MUST_BE + "1-25.")
     private int statisticColumns;
 
-    @Check(minValue = 1,maxValue = 200, message = VALUE_MUST_BE + "1-200.")
+    @Check(minValue = 1, maxValue = 200, message = VALUE_MUST_BE + "1-200.")
     private int widthMap;
 
-    @Check(minValue = 1,maxValue = 200, message = VALUE_MUST_BE + "1-200.")
+    @Check(minValue = 1, maxValue = 200, message = VALUE_MUST_BE + "1-200.")
     private int heightMap;
 
-    @Check(minValue = 1,maxValue = 50, message = VALUE_MUST_BE + "1-50.")
+    @Check(minValue = 1, maxValue = 50, message = VALUE_MUST_BE + "1-50.")
     private int maxAnimalCountInCell;
 
     @Check(message = VALUE_MUST_BE + "0-100.")
@@ -61,16 +71,16 @@ public class Settings {
     @Check(message = VALUE_MUST_BE + "0-100.")
     private double increaseEnergyPercent;
 
-    @Check(minValue = 1,maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
-    private int plantGrowTime;
+    @Check(minValue = 1, maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
+    private int plantGrowPeriod;
 
-    @Check(minValue = 1,maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
+    @Check(minValue = 1, maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
     private int showStatisticsPeriod;
 
-    @Check(minValue = 1,maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
-    private int lifeCyclePeriod;
+    @Check(minValue = 1, maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
+    private int cellServicePeriod;
 
-    @Check(minValue = 1,maxValue = 10000, message = VALUE_MUST_BE + "1-10000.")
+    @Check(minValue = 1, maxValue = 10000, message = VALUE_MUST_BE + "1-10000.")
     private int maxNumberOfDays;
 
     private boolean exceptionShowStackTrace;
@@ -117,16 +127,17 @@ public class Settings {
         put("Wolf", Wolf.class);
     }};
 
-    public static Settings get() {
+    public synchronized static Settings get() {
         String pathToSettingsFile = PathFinder.convertPathForAllOS(GAME_SETTINGS_JSON);
         try (FileReader fileReader = new FileReader(pathToSettingsFile)) {
             Settings settingsFromJSON = new Gson().fromJson(fileReader, Settings.class);
-            String validateSettings = CheckInputData.check(settingsFromJSON);
-            if (validateSettings.isEmpty())
+            Result validateSettingsResultCode = CheckInputData.check(settingsFromJSON);
+            if (validateSettingsResultCode.getResultCode() == ResultCode.OK)
                 return settingsFromJSON;
             else {
-                GameLogger.getLog().error(validateSettings);
-                throw new HandlerExceptions(validateSettings);
+                String errorMessage = validateSettingsResultCode.getMessage();
+                GameLogger.getLog().error(errorMessage);
+                throw new HandlerExceptions(errorMessage);
             }
         } catch (IOException e) {
             GameLogger.getLog().error(e.getMessage(), e);
@@ -137,9 +148,11 @@ public class Settings {
     public static Map<String, Class<?>> getClassesActions() {
         return classesActions;
     }
+
     public static Map<String, Class<? extends Organism>> getClassesOrganisms() {
         return classesOrganisms;
     }
+
     public String getPathToOrganismsProperty() {
         return PathFinder.convertPathForAllOS(pathToOrganismsProperty);
     }

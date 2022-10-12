@@ -10,16 +10,16 @@ public class Animal extends Organism {
         super(name, weight, maxOnCell, icon, organismMainType, organismType, possibleFood, speed, energy, maxFoodForSatiety);
     }
 
-    public double reduceAnimalEnergy(Animal animal) {
+    public void reduceAnimalEnergy(Animal animal) {
         double reduceEnergyPercent = Settings.get().getReduceEnergyPercent();
-//        return animal.getEnergy() - ((animal.getEnergy() / 100) * reduceEnergyPercent);
-        return animal.getEnergy() - reduceEnergyPercent;
+//        animal.setEnergy(animal.getEnergy() - ((animal.getEnergy() / 100) * reduceEnergyPercent));
+        animal.setEnergy(animal.getEnergy() - reduceEnergyPercent);
     }
 
-    public double increaseAnimalEnergy(Animal animal) {
+    public void increaseAnimalEnergy(Animal animal) {
         double increaseEnergyPercent = Settings.get().getIncreaseEnergyPercent();
-//        return ((animal.getEnergy() / 100) * increaseEnergyPercent) + animal.getEnergy();
-        return increaseEnergyPercent + animal.getEnergy();
+//        animal.setEnergy(((animal.getEnergy() / 100) * increaseEnergyPercent) + animal.getEnergy());
+        animal.setEnergy(increaseEnergyPercent + animal.getEnergy());
     }
 
 }

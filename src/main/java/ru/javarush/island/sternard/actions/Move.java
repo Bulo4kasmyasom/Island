@@ -1,13 +1,19 @@
 package ru.javarush.island.sternard.actions;
 
 import ru.javarush.island.sternard.actions.interfaces.Moving;
-import ru.javarush.island.sternard.game.Cell;
+import ru.javarush.island.sternard.map.Cell;
 import ru.javarush.island.sternard.organisms.parents.Animal;
 import ru.javarush.island.sternard.settings.Settings;
 import ru.javarush.island.sternard.utils.Randomizer;
 
 @SuppressWarnings({"UnusedDeclaration"}) // reflection api use this class and method
 public class Move implements Moving {
+
+    /*
+        Note:
+        The best practice is to use a "List<Cell> nextCell" in Cell.class with possible moves
+        in each cell at the time of initializing the map
+    */
 
     public void action(Animal animal, Cell cell, Cell[][] cells, int height, int width) {
         int chanceToMoveRandom = Randomizer.get(100);
@@ -28,8 +34,7 @@ public class Move implements Moving {
                 oldCell.removeOrganism(animal);
             }
 
-            double reduceAnimalEnergy = animal.reduceAnimalEnergy(animal);
-            animal.setEnergy(reduceAnimalEnergy);
+            animal.reduceAnimalEnergy(animal);
         }
     }
 

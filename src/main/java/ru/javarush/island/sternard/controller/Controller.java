@@ -2,8 +2,8 @@ package ru.javarush.island.sternard.controller;
 
 import lombok.Getter;
 import ru.javarush.island.sternard.exception.HandlerExceptions;
-import ru.javarush.island.sternard.game.Cell;
-import ru.javarush.island.sternard.game.OrganismFactory;
+import ru.javarush.island.sternard.map.Cell;
+import ru.javarush.island.sternard.organisms.factory.OrganismFactory;
 import ru.javarush.island.sternard.organisms.parents.Animal;
 import ru.javarush.island.sternard.organisms.parents.Organism;
 import ru.javarush.island.sternard.settings.Settings;
@@ -23,25 +23,23 @@ import static ru.javarush.island.sternard.constant.lang.English.*;
 
 @Getter
 public class Controller {
-
     public static final long START_TIMER = System.currentTimeMillis();
     private final ExecutorService cellRunExecutor;
-    private final int height;
-    private final int width;
+    private final int height = Settings.get().getHeightMap();
+    private final int width = Settings.get().getWidthMap();
     private final Cell[][] cells;
     private final AtomicInteger DAY_NUMBER = new AtomicInteger(0);
-    private final Map<String, Integer> diedOrganisms = new HashMap<>();
-    private final int corePoolSize = Runtime.getRuntime().availableProcessors();
-    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(corePoolSize);
+    private static final Map<String, Integer> diedOrganisms = new HashMap<>();
+    private static final int corePoolSize = Runtime.getRuntime().availableProcessors();
+    public static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(corePoolSize);
 
-    public Controller(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Controller() {
         this.cells = new Cell[height][width];
         this.cellRunExecutor = Executors.newWorkStealingPool();
     }
 
-    public void initGame(int maxOrganismsInCell) {
+    public void initGame() {
+        int maxOrganismsInCell = Settings.get().getMaxAnimalCountInCell();
         GameLogger.getLog().info(INIT_GAME_START_WITH_ORGANISMS_IN_CELL, maxOrganismsInCell);
         int countOrganisms = 0;
         for (int y = 0; y < this.getHeight(); ++y) {
@@ -72,10 +70,10 @@ public class Controller {
     }
 
     public void startService(Runnable runnable, long initialDelay, long delay) {
-        this.executorService.scheduleWithFixedDelay(runnable, initialDelay, delay, TimeUnit.MILLISECONDS);
+        executorService.scheduleWithFixedDelay(runnable, initialDelay, delay, TimeUnit.MILLISECONDS);
     }
 
-    public void animalChooseActionAndDoIt(Animal animal, Cell cell) {
+    public synchronized void animalChooseActionAndDoIt(Animal animal, Cell cell) {
         Map<String, Integer> actions = Settings.get().getActions();
         List<String> list = new ArrayList<>(actions.keySet());
         String keyAction = list.get(Randomizer.get(list.size()));
@@ -112,32 +110,54 @@ public class Controller {
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 
+    public static Map<String, Integer> getDiedOrganisms() {
+        return diedOrganisms;
+    }
+
     public static boolean isSameOrganisms(Organism organism, Organism o) {
         return Objects.equals(organism.getClass().getSimpleName(), o.getClass().getSimpleName());
     }
 
     public void stopSimulation() {
-        getExecutorService().shutdown();
+        Controller.executorService.shutdown();
         long timeEndSimulation = System.currentTimeMillis() - START_TIMER;
         GameLogger.getLog().info(SIMULATION_END + timeEndSimulation + " ms");
     }
 
-    public boolean isEndLifeCycle(int currentDay) {
+    public boolean isEndCellService(int currentDay) {
         return currentDay >= Settings.get().getMaxNumberOfDays();
     }
 
+    public static void addToDiedOrganismsMap(Organism organism) {
+        String organismIcon = organism.getIcon();
+        if (!diedOrganisms.containsKey(organismIcon))
+            diedOrganisms.put(organismIcon, 1);
+        else
+            diedOrganisms.put(organismIcon, diedOrganisms.get(organismIcon) + 1);
+    }
+
     public boolean isDead(Animal animal) {
-        double minWeight = animal.getWeight() - animal.getMaxFoodForSatiety();
         int minEnergyToDie = Settings.get().getMinEnergyToDie();
-        if ((animal.getEnergy() <= minEnergyToDie) || (animal.getWeight() < minWeight)) {
-            String iconAnimal = animal.getIcon();
-            if (!diedOrganisms.containsKey(iconAnimal))
-                diedOrganisms.put(iconAnimal, 1);
-            else
-                diedOrganisms.put(iconAnimal, diedOrganisms.get(iconAnimal) + 1);
+        if (animal.getEnergy() <= minEnergyToDie) {
+            addToDiedOrganismsMap(animal);
             return true;
         }
         return false;
     }
 
+    public void statisticCollect(Map<String, Integer> statistics, List<Organism> allOrganisms) {
+        for (int y = 0; y < this.getHeight(); ++y) {
+            for (int x = 0; x < this.getWidth(); ++x) {
+                Cell cell = this.getCells()[y][x];
+                allOrganisms.addAll(cell.getOrganisms());
+            }
+        }
+        for (Organism organism : allOrganisms) {
+            String organismSimpleName = organism.getClass().getSimpleName();
+            if (!statistics.containsKey(organismSimpleName))
+                statistics.put(organismSimpleName, 1);
+            else
+                statistics.put(organismSimpleName, statistics.get(organismSimpleName) + 1);
+        }
+    }
 }

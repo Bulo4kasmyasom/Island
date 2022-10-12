@@ -2,17 +2,17 @@ package ru.javarush.island.sternard.services;
 
 import lombok.AllArgsConstructor;
 import ru.javarush.island.sternard.controller.Controller;
-import ru.javarush.island.sternard.game.Cell;
-import ru.javarush.island.sternard.game.OrganismFactory;
+import ru.javarush.island.sternard.map.Cell;
+import ru.javarush.island.sternard.organisms.factory.OrganismFactory;
 import ru.javarush.island.sternard.organisms.parents.Organism;
 import ru.javarush.island.sternard.settings.Settings;
 import ru.javarush.island.sternard.utils.Randomizer;
 
 @AllArgsConstructor
-public class PlantGrow {
+public class PlantGrowService {
     private final Controller controller;
 
-    public Runnable createPlantGrowTask() {
+    public Runnable createPlantGrowService() {
         return () -> {
             int w = Randomizer.get(controller.getWidth());
             int h = Randomizer.get(controller.getHeight());

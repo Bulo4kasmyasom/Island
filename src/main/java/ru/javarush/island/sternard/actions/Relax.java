@@ -1,7 +1,7 @@
 package ru.javarush.island.sternard.actions;
 
 import ru.javarush.island.sternard.actions.interfaces.Relaxing;
-import ru.javarush.island.sternard.game.Cell;
+import ru.javarush.island.sternard.map.Cell;
 import ru.javarush.island.sternard.organisms.parents.Animal;
 import ru.javarush.island.sternard.settings.Settings;
 import ru.javarush.island.sternard.utils.Randomizer;
@@ -14,8 +14,7 @@ public class Relax implements Relaxing {
         int randomChanceToRelax = Randomizer.get(100);
 
         if (relaxChance > randomChanceToRelax) {
-            double increaseAnimalEnergy = animal.increaseAnimalEnergy(animal);
-            animal.setEnergy(increaseAnimalEnergy);
+            animal.increaseAnimalEnergy(animal);
         }
     }
 }

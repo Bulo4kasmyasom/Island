@@ -1,4 +1,4 @@
-package ru.javarush.island.sternard.game;
+package ru.javarush.island.sternard.organisms.factory;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

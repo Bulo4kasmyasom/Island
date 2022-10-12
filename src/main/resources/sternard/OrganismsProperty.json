@@ -7,7 +7,7 @@
     "weight": 50.0,
     "maxOnCell": 30,
     "speed": 3,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 8.0,
     "possibleFood": {
       "Horse": 10,
@@ -29,7 +29,7 @@
     "weight": 250.0,
     "maxOnCell": 40,
     "speed": 5,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 10.0,
     "possibleFood": {
       "Horse": 40,
@@ -52,7 +52,7 @@
     "weight": 70.0,
     "maxOnCell": 30,
     "speed": 5,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 8.0,
     "possibleFood": {
       "Lion": 30,
@@ -72,7 +72,7 @@
     "weight": 15.0,
     "maxOnCell": 30,
     "speed": 1,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 3.0,
     "possibleFood": {
       "Fox": 15,
@@ -89,7 +89,7 @@
     "weight": 70.0,
     "maxOnCell": 140,
     "speed": 3,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 15.0,
     "possibleFood": {
       "Sprig": 80,
@@ -105,7 +105,7 @@
     "weight": 2.0,
     "maxOnCell": 150,
     "speed": 2,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 0.45,
     "possibleFood": {
       "Horse": 10,
@@ -127,7 +127,7 @@
     "weight": 0.05,
     "maxOnCell": 500,
     "speed": 1,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 0.01,
     "possibleFood": {
       "Chestnut": 80,
@@ -143,7 +143,7 @@
     "weight": 400.0,
     "maxOnCell": 20,
     "speed": 4,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 60.0,
     "possibleFood": {
       "Mushroom": 90,
@@ -159,7 +159,7 @@
     "weight": 60.0,
     "maxOnCell": 140,
     "speed": 3,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 10.0,
     "possibleFood": {
       "Mushroom": 70,
@@ -175,7 +175,7 @@
     "weight": 8.0,
     "maxOnCell": 30,
     "speed": 2,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 2.0,
     "possibleFood": {
       "Rabbit": 70,
@@ -192,7 +192,7 @@
     "weight": 6.0,
     "maxOnCell": 20,
     "speed": 3,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 1.0,
     "possibleFood": {
       "Fox": 10,
@@ -209,7 +209,7 @@
     "weight": 1.0,
     "maxOnCell": 200,
     "speed": 4,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 0.15,
     "possibleFood": {
       "Spike": 70,
@@ -225,7 +225,7 @@
     "weight": 300.0,
     "maxOnCell": 20,
     "speed": 4,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 50.0,
     "possibleFood": {
       "Chestnut": 50,
@@ -242,7 +242,7 @@
     "weight": 0.01,
     "maxOnCell": 1000,
     "speed": 1,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 0.003,
     "possibleFood": {
       "Chestnut": 50,
@@ -261,7 +261,7 @@
     "weight": 700.0,
     "maxOnCell": 10,
     "speed": 3,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 100.0,
     "possibleFood": {
       "Chestnut": 70,
@@ -277,7 +277,7 @@
     "weight": 400.0,
     "maxOnCell": 50,
     "speed": 2,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 50.0,
     "possibleFood": {
       "Mouse": 50,
@@ -296,7 +296,7 @@
     "weight": 500.0,
     "maxOnCell": 5,
     "speed": 2,
-    "energy": 100.0,
+    "energy": 65.0,
     "maxFoodForSatiety": 80.0,
     "possibleFood": {
       "Snake": 80,

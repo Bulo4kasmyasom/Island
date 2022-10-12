@@ -3,9 +3,9 @@ package ru.javarush.island.sternard;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.javarush.island.sternard.controller.Controller;
-import ru.javarush.island.sternard.services.LifeCycle;
-import ru.javarush.island.sternard.services.PlantGrow;
-import ru.javarush.island.sternard.services.ShowStatistics;
+import ru.javarush.island.sternard.services.CellService;
+import ru.javarush.island.sternard.services.PlantGrowService;
+import ru.javarush.island.sternard.services.ShowStatisticsService;
 import ru.javarush.island.sternard.settings.Settings;
 import ru.javarush.island.sternard.utils.GameLogger;
 
@@ -16,33 +16,26 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        //This line can be removed if move LOG4J2.Properties in to resources
-        System.setProperty("log4j.configurationFile", Settings.get().getLog4j2_properties());
-
-        // is it necessary to take out to variables ?...
-        int plantGrowTime = Settings.get().getPlantGrowTime();
+        int plantGrowPeriod = Settings.get().getPlantGrowPeriod();
         int showStatisticsPeriod = Settings.get().getShowStatisticsPeriod();
-        int lifeCyclePeriod = Settings.get().getLifeCyclePeriod();
-        int maxAnimalCountInCell = Settings.get().getMaxAnimalCountInCell();
-        int widthMap = Settings.get().getWidthMap();
-        int heightMap = Settings.get().getHeightMap();
+        int cellServicePeriod = Settings.get().getCellServicePeriod();
 
-        Controller controller = new Controller(widthMap, heightMap);
-        controller.initGame(maxAnimalCountInCell);
+        Controller controller = new Controller();
+        controller.initGame();
 
-        Runnable plantGrowTask = new PlantGrow(controller).createPlantGrowTask();
-        Runnable runnable = new ShowStatistics(controller).showStatisticsTask();
-        Runnable runnable1 = new LifeCycle(controller).lifeCycleService();
+        Runnable plantGrowService = new PlantGrowService(controller).createPlantGrowService();
+        Runnable statisticsService = new ShowStatisticsService(controller).showStatisticsServiceStart();
+        Runnable cellServiceStart = new CellService(controller).cellServiceStart();
 
-        controller.startService(plantGrowTask, 20L, plantGrowTime);
-        controller.startService(runnable, 30L, showStatisticsPeriod);
-        controller.startService(runnable1, 40L, lifeCyclePeriod);
+        controller.startService(statisticsService, 10L, showStatisticsPeriod);
+        controller.startService(plantGrowService, 20L, plantGrowPeriod);
+        controller.startService(cellServiceStart, 30L, cellServicePeriod);
 
-        // if game emergency stopped
+        // if game emergency stopped. Сan be deleted
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
         {
-            boolean endLifeCycle = controller.isEndLifeCycle(controller.getDAY_NUMBER().get());
-            if (!endLifeCycle)
+            boolean endCellService = controller.isEndCellService(controller.getDAY_NUMBER().get());
+            if (!endCellService)
                 GameLogger.getLog().warn(THE_GAME_WAS_EMERGENCY_STOPPED);
         }));
     }

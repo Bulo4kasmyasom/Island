@@ -4,16 +4,18 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import ru.javarush.island.sternard.annotation.Check;
 import ru.javarush.island.sternard.exception.HandlerExceptions;
+import ru.javarush.island.sternard.result.Result;
+import ru.javarush.island.sternard.result.ResultCode;
 
 import java.lang.reflect.Field;
+import java.text.MessageFormat;
 import java.util.Map;
 
 import static ru.javarush.island.sternard.constant.lang.English.ACCESS_FIELD_ERROR;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CheckInputData {
-
-    public static String check(Object object) {
+    public static Result check(Object object) {
         Class<?> objectClass = object.getClass();
         for (Field declaredField : objectClass.getDeclaredFields()) {
             if (declaredField.isAnnotationPresent(Check.class)) {
@@ -31,14 +33,21 @@ public class CheckInputData {
                         (checkDigits(fieldValue, annotationValue)) ||
                         (checkMaps(fieldValue)) ||
                         (checkStringArrays(fieldValue))) {
-                    String message = declaredField.getAnnotation(Check.class).message() + " Field: " + declaredField.getName();
 
-                    GameLogger.getLog().error(message);
-                    return message;
+                    String errorMessage = MessageFormat.format("{0} | Field: {1} | value: {2}",
+                            declaredField.getAnnotation(Check.class).message(), declaredField.getName(), fieldValue);
+
+                    return new Result(ResultCode.ERROR, errorMessage);
                 }
             }
         }
-        return "";
+        return new Result(ResultCode.OK);
+    }
+
+    private static boolean checkDigits(Object fieldValue, Check annotationValue) {
+        if (fieldValue instanceof Number number)
+            return number.intValue() < annotationValue.minValue() || number.intValue() > annotationValue.maxValue();
+        return false;
     }
 
     private static boolean checkMaps(Object fieldValue) {
@@ -50,12 +59,6 @@ public class CheckInputData {
     private static boolean checkStringArrays(Object fieldValue) {
         if (fieldValue instanceof String[] array)
             return array.length == 0;
-        return false;
-    }
-
-    private static boolean checkDigits(Object fieldValue, Check annotationValue) {
-        if (fieldValue instanceof Number number)
-            return number.intValue() < annotationValue.minValue() || number.intValue() > annotationValue.maxValue();
         return false;
     }
 

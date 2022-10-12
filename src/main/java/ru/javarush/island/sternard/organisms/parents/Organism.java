@@ -1,6 +1,7 @@
 package ru.javarush.island.sternard.organisms.parents;
 
 import lombok.Getter;
+
 import java.util.Map;
 
 @SuppressWarnings("unused") // private Organism() supressed
