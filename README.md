@@ -2,7 +2,7 @@
 
 ##### **Path to settings files:**
 
-> - [src/main/java/ru/javarush/island/sternard/settings/Settings.java]()
+> - [Island/src/main/java/ru/javarush/island/sternard/settings/Settings.java]()
 >
 > Settings that are read from JSON file in Settings.class. Contains such settings as
 > > - path to OrganismsProperty.json
