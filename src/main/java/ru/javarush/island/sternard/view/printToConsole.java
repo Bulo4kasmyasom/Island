@@ -1,10 +1,12 @@
 package ru.javarush.island.sternard.view;
 
 import ru.javarush.island.sternard.controller.Controller;
+import ru.javarush.island.sternard.enumeration.ConsoleColors;
 import ru.javarush.island.sternard.organisms.factory.OrganismFactory;
 import ru.javarush.island.sternard.organisms.parents.Organism;
 import ru.javarush.island.sternard.settings.Settings;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -14,6 +16,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static ru.javarush.island.sternard.constant.lang.English.*;
 
 public class printToConsole {
+    private final String RESET_ANSI_COLOR = ConsoleColors.RESET.getAnsiColor();
     private final Controller controller;
     private final String textColor = Settings.get().getTextColorStatisticKey();
     private final String drawStatisticTextColor = Settings.get().getStatisticTextColorDay();
@@ -40,9 +43,9 @@ public class printToConsole {
         for (Map.Entry<String, Integer> key : statistics.entrySet()) {
             if (table % statisticColumns == 0)
                 System.out.println();
-
-            System.out.printf("%s %s%-10d\033[0m \t", organismMapFromJson.get(key.getKey()).getIcon(),
-                    textColorStatisticValue, key.getValue());
+            
+            System.out.printf("%s %s%-10d %s\t", organismMapFromJson.get(key.getKey()).getIcon(),
+                    textColorStatisticValue, key.getValue(), RESET_ANSI_COLOR);
             table++;
         }
     }
@@ -69,7 +72,8 @@ public class printToConsole {
         printStatisticsToConsole(allOrganismCount, herbivoreCount, carnivoreCount, animalsCount, plantsCount, animalsDiedNumber);
     }
 
-    private void printStatisticsToConsole(long allOrganismCount, long herbivoreCount, long carnivoreCount, long animalsCount, long plantsCount, int animalsDiedNumber) {
+    private void printStatisticsToConsole(long allOrganismCount, long herbivoreCount, long carnivoreCount,
+                                          long animalsCount, long plantsCount, int animalsDiedNumber) {
         System.out.println();
         printToConsoleFormat(ORGANISMS, allOrganismCount);
         printToConsoleFormat(HERBIVORES, herbivoreCount);
@@ -78,16 +82,19 @@ public class printToConsole {
         printToConsoleFormat(PLANTS, plantsCount);
         if (animalsDiedNumber > 0) {
             printToConsoleFormat(DIED_ORGANISMS_COUNT, animalsDiedNumber);
-            System.out.print(textColor + DIED_ORGANISMS_ENUMERATION + ": \033[0m");
+            System.out.print(textColor + DIED_ORGANISMS_ENUMERATION + ": " + RESET_ANSI_COLOR);
             Controller.getDiedOrganisms().entrySet().stream()
                     .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue())) // sort by map value
                     .limit(7)
-                    .forEach(k -> System.out.print(k.getKey() + "(" + textColorStatisticValue + k.getValue() + "\033[0m) "));
+                    .forEach(k -> System.out.print(MessageFormat.format("{0}({1}{2}){3} ",
+                            k.getKey(), textColorStatisticValue, k.getValue(), RESET_ANSI_COLOR)));
         }
     }
 
     private void printToConsoleFormat(String text, long count) {
-        System.out.println(textColor + text + ": \033[0m" + textColorStatisticValue + count + "\033[0m");
+        System.out.println(MessageFormat.format("{0}{1}: {2}{3}{4}{5}",
+                textColor, text, RESET_ANSI_COLOR,
+                textColorStatisticValue, count, RESET_ANSI_COLOR));
     }
 
 }

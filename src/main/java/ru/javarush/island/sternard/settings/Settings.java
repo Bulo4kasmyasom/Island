@@ -9,6 +9,7 @@ import ru.javarush.island.sternard.actions.Move;
 import ru.javarush.island.sternard.actions.Relax;
 import ru.javarush.island.sternard.actions.Reproduce;
 import ru.javarush.island.sternard.annotation.Check;
+import ru.javarush.island.sternard.enumeration.ConsoleColors;
 import ru.javarush.island.sternard.exception.HandlerExceptions;
 import ru.javarush.island.sternard.organisms.*;
 import ru.javarush.island.sternard.organisms.parents.Organism;
@@ -29,6 +30,7 @@ import static ru.javarush.island.sternard.constant.lang.English.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Settings {
+    
     static {
         //This line can be removed if LOG4J2.Properties will move in to resources
         System.setProperty("log4j2.configurationFile", "src/main/resources/sternard/log4j2.properties");
@@ -127,7 +129,7 @@ public class Settings {
         put("Wolf", Wolf.class);
     }};
 
-    public synchronized static Settings get() {
+    public static Settings get() {
         String pathToSettingsFile = PathFinder.convertPathForAllOS(GAME_SETTINGS_JSON);
         try (FileReader fileReader = new FileReader(pathToSettingsFile)) {
             Settings settingsFromJSON = new Gson().fromJson(fileReader, Settings.class);
@@ -145,15 +147,37 @@ public class Settings {
         }
     }
 
+    public String getPathToOrganismsProperty() {
+        return PathFinder.convertPathForAllOS(pathToOrganismsProperty);
+    }
+
+    private String getColor(String color) {
+        try {
+            return ConsoleColors.valueOf(color.toUpperCase()).getAnsiColor();
+        } catch (IllegalArgumentException e) {
+            GameLogger.getLog().warn(e.getMessage());
+//            return ConsoleColors.WHITE.getAnsiColor();
+            throw new HandlerExceptions(NO_SUCH_COLOR_IN_CONSOLE_COLORS);
+        }
+    }
+
+    public String getStatisticTextColorDay() {
+        return getColor(statisticTextColorDay);
+    }
+
+    public String getTextColorStatisticKey() {
+        return getColor(textColorStatisticKey);
+    }
+
+    public String getTextColorStatisticValue() {
+        return getColor(textColorStatisticValue);
+    }
+
     public static Map<String, Class<?>> getClassesActions() {
         return classesActions;
     }
 
     public static Map<String, Class<? extends Organism>> getClassesOrganisms() {
         return classesOrganisms;
-    }
-
-    public String getPathToOrganismsProperty() {
-        return PathFinder.convertPathForAllOS(pathToOrganismsProperty);
     }
 }

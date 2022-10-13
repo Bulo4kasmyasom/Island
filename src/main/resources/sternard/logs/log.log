@@ -1,0 +1,22 @@
+WARN   	[13.окт..2022 12:12:22] [Thread-0] (File: Runner.java | Method:lambda$main$0() | Line:39)
+		The game was emergency stopped, the simulation was not finished
+INFO   	[13.окт..2022 12:12:34] [main] (File: Controller.java | Method:initGame() | Line:43)
+		initGame start with 3 organisms in cell
+INFO   	[13.окт..2022 12:12:36] [main] (File: Controller.java | Method:initGame() | Line:63)
+		initGame end. Created 246042 organisms. Init time: 1922 ms
+INFO   	[13.окт..2022 12:12:45] [main] (File: Controller.java | Method:initGame() | Line:43)
+		initGame start with 3 organisms in cell
+INFO   	[13.окт..2022 12:12:46] [main] (File: Controller.java | Method:initGame() | Line:63)
+		initGame end. Created 263627 organisms. Init time: 1929 ms
+ERROR  	[13.окт..2022 12:14:14] [main] (File: Settings.java | Method:get() | Line:141)
+		Value must be 1-10000. | Field: maxNumberOfDays | value: -500
+INFO   	[13.окт..2022 12:17:18] [main] (File: Controller.java | Method:initGame() | Line:43)
+		initGame start with 3 organisms in cell
+INFO   	[13.окт..2022 12:17:19] [main] (File: Controller.java | Method:initGame() | Line:63)
+		initGame end. Created 261698 organisms. Init time: 1984 ms
+WARN   	[13.окт..2022 12:17:24] [Thread-0] (File: Runner.java | Method:lambda$main$0() | Line:39)
+		The game was emergency stopped, the simulation was not finished
+INFO   	[13.окт..2022 12:18:43] [main] (File: Controller.java | Method:initGame() | Line:43)
+		initGame start with 3 organisms in cell
+INFO   	[13.окт..2022 12:18:44] [main] (File: Controller.java | Method:initGame() | Line:63)
+		initGame end. Created 257903 organisms. Init time: 1932 ms

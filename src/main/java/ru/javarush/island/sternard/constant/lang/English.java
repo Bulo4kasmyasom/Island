@@ -8,8 +8,8 @@ public interface English {
     String VALUE_MUST_BE = "Value must be ";
     String NOT_NULL_AND_NOT_EMPTY = VALUE_MUST_BE + "not null and not empty.";
     String INVALID_FILE_PATH = "Invalid file path.";
-    String DIED_ORGANISMS_COUNT = "Dead organisms due to low energy";
-    String DIED_ORGANISMS_ENUMERATION = "Dead organisms due to low energy";
+    String DIED_ORGANISMS_COUNT = "Dead organisms number";
+    String DIED_ORGANISMS_ENUMERATION = "Dead organisms";
     String PLANTS = "Plants";
     String ANIMALS = "Animals";
     String CARNIVORES = "Carnivores";
@@ -24,4 +24,6 @@ public interface English {
     String THE_GAME_WAS_EMERGENCY_STOPPED = "The game was emergency stopped, the simulation was not finished";
     String INCORRECT_TYPES_OF_ORGANISMS_LOG = "An attempt to use incorrect types of organisms";
     String INCORRECT_TYPES_OF_ORGANISMS = "plant & animal are mandatory types of organisms, add that to settings file";
+    String NO_SUCH_COLOR_IN_CONSOLE_COLORS = "There are no such color in ConsoleColors";
+
 }
