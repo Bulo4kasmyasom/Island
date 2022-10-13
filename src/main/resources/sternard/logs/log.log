@@ -20,3 +20,9 @@ INFO   	[13.окт..2022 12:18:43] [main] (File: Controller.java | Method:initGa
 		initGame start with 3 organisms in cell
 INFO   	[13.окт..2022 12:18:44] [main] (File: Controller.java | Method:initGame() | Line:63)
 		initGame end. Created 257903 organisms. Init time: 1932 ms
+INFO   	[13.окт..2022 12:36:45] [main] (File: Controller.java | Method:initGame() | Line:43)
+		initGame start with 3 organisms in cell
+INFO   	[13.окт..2022 12:36:46] [main] (File: Controller.java | Method:initGame() | Line:63)
+		initGame end. Created 245268 organisms. Init time: 2031 ms
+INFO   	[13.окт..2022 12:38:30] [pool-1-thread-1] (File: Controller.java | Method:stopSimulation() | Line:124)
+		Simulation is stopped! Simulation time: 106067 ms
