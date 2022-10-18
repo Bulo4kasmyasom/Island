@@ -1,6 +1,5 @@
 package com.javarush.island.sternard.controller;
 
-import lombok.Getter;
 import com.javarush.island.sternard.exception.HandlerExceptions;
 import com.javarush.island.sternard.map.Cell;
 import com.javarush.island.sternard.organisms.factory.OrganismFactory;
@@ -9,6 +8,7 @@ import com.javarush.island.sternard.organisms.parents.Organism;
 import com.javarush.island.sternard.settings.Settings;
 import com.javarush.island.sternard.utils.GameLogger;
 import com.javarush.island.sternard.utils.Randomizer;
+import lombok.Getter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -31,7 +31,7 @@ public class Controller {
     private final AtomicInteger DAY_NUMBER = new AtomicInteger(0);
     private static final Map<String, Integer> diedOrganisms = new HashMap<>();
     private static final int corePoolSize = Runtime.getRuntime().availableProcessors();
-    public static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(corePoolSize);
+    public static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(corePoolSize);
 
     public Controller() {
         this.cells = new Cell[height][width];

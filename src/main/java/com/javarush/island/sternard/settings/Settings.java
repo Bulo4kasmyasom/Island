@@ -1,9 +1,6 @@
 package com.javarush.island.sternard.settings;
 
 import com.google.gson.Gson;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import com.javarush.island.sternard.actions.Eat;
 import com.javarush.island.sternard.actions.Move;
 import com.javarush.island.sternard.actions.Relax;
@@ -18,6 +15,9 @@ import com.javarush.island.sternard.result.ResultCode;
 import com.javarush.island.sternard.utils.CheckInputData;
 import com.javarush.island.sternard.utils.GameLogger;
 import com.javarush.island.sternard.utils.PathFinder;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -156,7 +156,6 @@ public class Settings {
             return ConsoleColors.valueOf(color.toUpperCase()).getAnsiColor();
         } catch (IllegalArgumentException e) {
             GameLogger.getLog().warn(e.getMessage());
-//            return ConsoleColors.WHITE.getAnsiColor();
             throw new HandlerExceptions(NO_SUCH_COLOR_IN_CONSOLE_COLORS);
         }
     }
