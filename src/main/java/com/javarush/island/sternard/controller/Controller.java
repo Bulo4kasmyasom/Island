@@ -64,9 +64,9 @@ public class Controller {
     }
 
     private Organism getRandomOrganism() {
-        List<Map.Entry<String, Organism>> entries = OrganismFactory.organismMapFromJson().entrySet().stream().toList();
-        Map.Entry<String, Organism> stringOrganismEntry = entries.get(Randomizer.get(entries.size()));
-        return OrganismFactory.createOrganism(stringOrganismEntry.getKey());
+        Object[] organismClasses = Settings.getClassesOrganisms().keySet().toArray();
+        String getOrganismClassName = (String) organismClasses[Randomizer.get(organismClasses.length)];
+        return OrganismFactory.createOrganism(getOrganismClassName);
     }
 
     public void startService(Runnable runnable, long initialDelay, long delay) {
