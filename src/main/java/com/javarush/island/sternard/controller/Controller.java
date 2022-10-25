@@ -35,7 +35,7 @@ public class Controller {
 
     public Controller() {
         this.cells = new Cell[height][width];
-        this.cellRunExecutor = Executors.newWorkStealingPool();
+        this.cellRunExecutor = Executors.newWorkStealingPool(corePoolSize);
     }
 
     public void initGame() {
