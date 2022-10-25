@@ -22,6 +22,7 @@ public class HandlerExceptions extends RuntimeException {
             for (StackTraceElement stackTraceElement : stackTrace) {
                 System.out.println(stackTraceElement);
             }
+            System.exit(1);
         }
     }
 

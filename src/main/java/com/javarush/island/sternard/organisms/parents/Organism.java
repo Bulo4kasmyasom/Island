@@ -1,12 +1,14 @@
 package com.javarush.island.sternard.organisms.parents;
 
+import com.javarush.island.sternard.exception.HandlerExceptions;
+import com.javarush.island.sternard.settings.Settings;
 import lombok.Getter;
 
 import java.util.Map;
 
 @SuppressWarnings("unused") // private Organism() supressed
 @Getter
-public class Organism {
+public class Organism implements Cloneable {
     protected String name;
     protected double weight;
     protected int maxOnCell;
@@ -48,5 +50,21 @@ public class Organism {
             this.energy = 100;
         else
             this.energy = energy;
+    }
+
+    @Override
+    protected Organism clone() throws CloneNotSupportedException {
+        Organism clone = (Organism) super.clone();
+        clone.energy = Settings.get().getEnergyForNewAnimals();
+        return clone;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T extends Organism> T clone(T object) {
+        try {
+            return (T) object.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new HandlerExceptions(e.getMessage(), e.getStackTrace());
+        }
     }
 }

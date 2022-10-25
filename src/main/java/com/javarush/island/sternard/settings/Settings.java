@@ -76,6 +76,9 @@ public class Settings {
     @Check(minValue = 1, maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
     private int plantGrowPeriod;
 
+    @Check(minValue = 1, message = VALUE_MUST_BE + "1-100.")
+    private int energyForNewAnimals;
+
     @Check(minValue = 1, maxValue = 100000, message = VALUE_MUST_BE + "1-100000.")
     private int showStatisticsPeriod;
 

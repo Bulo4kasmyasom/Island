@@ -5,6 +5,7 @@
   "widthMap": 100,
   "heightMap": 20,
   "minEnergyToDie": 0,
+  "energyForNewAnimals": 65,
   "reduceEnergyPercent": 2.0,
   "increaseEnergyPercent": 10.0,
   "plantGrowPeriod": 100,
@@ -18,7 +19,7 @@
   "maxNumberOfDays": 500,
   "actions": {
     "reproduce": 70,
-    "eat": 80,
+    "eat": 70,
     "relax": 30,
     "move": 70
   },

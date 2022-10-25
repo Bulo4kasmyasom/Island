@@ -1,9 +1,9 @@
 package com.javarush.island.sternard.services;
 
-import lombok.AllArgsConstructor;
 import com.javarush.island.sternard.controller.Controller;
 import com.javarush.island.sternard.map.Cell;
 import com.javarush.island.sternard.organisms.parents.Animal;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
