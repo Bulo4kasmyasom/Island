@@ -1,5 +1,6 @@
 package com.javarush.island.sternard.enumeration;
 
+@SuppressWarnings("unused")
 public enum ConsoleColors {
     // High Intensity Colors
     WHITE("\033[0;97m"),
