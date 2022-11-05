@@ -15,9 +15,7 @@ import com.javarush.island.sternard.result.ResultCode;
 import com.javarush.island.sternard.utils.CheckInputData;
 import com.javarush.island.sternard.utils.GameLogger;
 import com.javarush.island.sternard.utils.PathFinder;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,12 +26,11 @@ import static com.javarush.island.sternard.constant.lang.English.*;
 
 @SuppressWarnings({"UnusedDeclaration"})
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Settings {
 
     static {
         //This line can be removed if LOG4J2.Properties will move in to resources
-        System.setProperty("log4j2.configurationFile", "src/main/resources/sternard/log4j2.properties");
+        System.setProperty("log4j2.configurationFile", "sternard/log4j2.properties");
     }
 
     private static final String GAME_SETTINGS_JSON = "src/main/resources/sternard/GameSettings.json";
@@ -98,41 +95,48 @@ public class Settings {
 
     @Check(message = FIELD_IS_EMPTY)
     private Map<String, String[]> organismType;
+    private static final Map<String, Class<?>> classesActions = new HashMap<>();
+    private static final Map<String, Class<? extends Organism>> classesOrganisms = new HashMap<>();
 
-    private static final Map<String, Class<?>> classesActions = new HashMap<>() {{
-        put("Eat", Eat.class);
-        put("Move", Move.class);
-        put("Relax", Relax.class);
-        put("Reproduce", Reproduce.class);
-    }};
+    private Settings() {
+        putOrganismActions();
+        putOrganismClasses();
+    }
 
-    private static final Map<String, Class<? extends Organism>> classesOrganisms = new HashMap<>() {{
-        put("Bear", Bear.class);
-        put("Boar", Boar.class);
-        put("Buffalo", Buffalo.class);
-        put("Caterpillar", Caterpillar.class);
-        put("Chestnut", Chestnut.class);
-        put("Deer", Deer.class);
-        put("Duck", Duck.class);
-        put("Eagle", Eagle.class);
-        put("Fox", Fox.class);
-        put("Goat", Goat.class);
-        put("Horse", Horse.class);
-        put("Lion", Lion.class);
-        put("Mouse", Mouse.class);
-        put("Mushroom", Mushroom.class);
-        put("Palm", Palm.class);
-        put("Panther", Panther.class);
-        put("Rabbit", Rabbit.class);
-        put("Sheep", Sheep.class);
-        put("Snake", Snake.class);
-        put("Spike", Spike.class);
-        put("Sprig", Sprig.class);
-        put("Tree", Tree.class);
-        put("Wolf", Wolf.class);
-    }};
+    public void putOrganismActions() {
+        classesActions.put("Eat", Eat.class);
+        classesActions.put("Move", Move.class);
+        classesActions.put("Relax", Relax.class);
+        classesActions.put("Reproduce", Reproduce.class);
+    }
 
-    public static Settings get() {
+    public void putOrganismClasses() {
+        classesOrganisms.put("Bear", Bear.class);
+        classesOrganisms.put("Boar", Boar.class);
+        classesOrganisms.put("Buffalo", Buffalo.class);
+        classesOrganisms.put("Caterpillar", Caterpillar.class);
+        classesOrganisms.put("Chestnut", Chestnut.class);
+        classesOrganisms.put("Deer", Deer.class);
+        classesOrganisms.put("Duck", Duck.class);
+        classesOrganisms.put("Eagle", Eagle.class);
+        classesOrganisms.put("Fox", Fox.class);
+        classesOrganisms.put("Goat", Goat.class);
+        classesOrganisms.put("Horse", Horse.class);
+        classesOrganisms.put("Lion", Lion.class);
+        classesOrganisms.put("Mouse", Mouse.class);
+        classesOrganisms.put("Mushroom", Mushroom.class);
+        classesOrganisms.put("Palm", Palm.class);
+        classesOrganisms.put("Panther", Panther.class);
+        classesOrganisms.put("Rabbit", Rabbit.class);
+        classesOrganisms.put("Sheep", Sheep.class);
+        classesOrganisms.put("Snake", Snake.class);
+        classesOrganisms.put("Spike", Spike.class);
+        classesOrganisms.put("Sprig", Sprig.class);
+        classesOrganisms.put("Tree", Tree.class);
+        classesOrganisms.put("Wolf", Wolf.class);
+    }
+
+    public static Settings get() { // need to use singleton...
         String pathToSettingsFile = PathFinder.convertPathForAllOS(GAME_SETTINGS_JSON);
         try (FileReader fileReader = new FileReader(pathToSettingsFile)) {
             Settings settingsFromJSON = new Gson().fromJson(fileReader, Settings.class);

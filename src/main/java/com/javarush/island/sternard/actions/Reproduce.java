@@ -7,6 +7,7 @@ import com.javarush.island.sternard.settings.Settings;
 import com.javarush.island.sternard.utils.Randomizer;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.javarush.island.sternard.controller.Controller.isSameOrganisms;
 
@@ -17,7 +18,8 @@ public class Reproduce implements Reproducing {
         long similarAnimals = animalsInCell.stream()
                 .filter(o -> isSameOrganisms(animal, o))
                 .count();
-        int reproduceChance = Settings.get().getActions().get("reproduce");
+        Map<String, Integer> actions = Settings.get().getActions();
+        int reproduceChance = actions.get("reproduce");
         int randomChanceToReproduce = Randomizer.get(100);
         if ((similarAnimals > 1) && (reproduceChance > randomChanceToReproduce)) {
 

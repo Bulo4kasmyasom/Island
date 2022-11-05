@@ -6,7 +6,7 @@ import com.javarush.island.sternard.settings.Settings;
 public class HandlerExceptions extends RuntimeException {
     public HandlerExceptions(String message) {
         System.err.println(message);
-        Controller.executorService.shutdown();  // чтобы хоть как-то остановить программу
+        Controller.executorService.shutdown();  // for stop all threads
     }
 
     public HandlerExceptions(String message, StackTraceElement[] stackTrace) {
