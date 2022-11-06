@@ -1,6 +1,6 @@
 {
-  "pathToOrganismsProperty": "src/main/resources/sternard/OrganismsProperty.json",
-  "log4j2_properties": "src/main/resources/sternard/log4j2.properties",
+  "pathToOrganismsProperty": "/resources/sternard/OrganismsProperty.json",
+  "log4j2_properties": "/resources/sternard/log4j2.properties",
   "exceptionShowStackTrace": "false",
   "widthMap": 100,
   "heightMap": 20,

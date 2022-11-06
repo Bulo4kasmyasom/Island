@@ -2,16 +2,18 @@ package com.javarush.island.sternard.organisms.factory;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import com.javarush.island.sternard.controller.Controller;
 import com.javarush.island.sternard.exception.HandlerExceptions;
 import com.javarush.island.sternard.organisms.parents.Organism;
 import com.javarush.island.sternard.settings.Settings;
 import com.javarush.island.sternard.utils.GameLogger;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -23,10 +25,14 @@ public class OrganismFactory {
 
     public static Map<String, Organism> organismMapFromJson() {
         String pathToOrganismsProperty = Settings.get().getPathToOrganismsProperty();
-        try (FileReader fileReader = new FileReader(pathToOrganismsProperty)) {
-            Type type = new TypeToken<Map<String, Organism>>() {
-            }.getType();
-            return new Gson().fromJson(fileReader, type);
+
+        try (InputStream inputStream = OrganismFactory.class.getResourceAsStream(pathToOrganismsProperty)) {
+            assert inputStream != null;
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+                Type type = new TypeToken<Map<String, Organism>>() {
+                }.getType();
+                return new Gson().fromJson(bufferedReader, type);
+            }
         } catch (IOException e) {
             GameLogger.getLog().error(e.getMessage(), e);
             throw new HandlerExceptions(FILE_ERROR + pathToOrganismsProperty, e.getStackTrace());

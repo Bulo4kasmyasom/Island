@@ -14,11 +14,12 @@ import com.javarush.island.sternard.result.Result;
 import com.javarush.island.sternard.result.ResultCode;
 import com.javarush.island.sternard.utils.CheckInputData;
 import com.javarush.island.sternard.utils.GameLogger;
-import com.javarush.island.sternard.utils.PathFinder;
 import lombok.Getter;
 
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,10 +31,10 @@ public class Settings {
 
     static {
         //This line can be removed if LOG4J2.Properties will move in to resources
-        System.setProperty("log4j2.configurationFile", "sternard/log4j2.properties");
+        System.setProperty("log4j2.configurationFile", "src/main/resources/sternard/log4j2.properties");
     }
 
-    private static final String GAME_SETTINGS_JSON = "src/main/resources/sternard/GameSettings.json";
+    private static final String GAME_SETTINGS_JSON = "/resources/sternard/GameSettings.json";
     @Check(message = INVALID_FILE_PATH)
     public String pathToOrganismsProperty;
 
@@ -136,26 +137,24 @@ public class Settings {
         classesOrganisms.put("Wolf", Wolf.class);
     }
 
-    public static Settings get() { // need to use singleton...
-        String pathToSettingsFile = PathFinder.convertPathForAllOS(GAME_SETTINGS_JSON);
-        try (FileReader fileReader = new FileReader(pathToSettingsFile)) {
-            Settings settingsFromJSON = new Gson().fromJson(fileReader, Settings.class);
-            Result validateSettingsResultCode = CheckInputData.check(settingsFromJSON);
-            if (validateSettingsResultCode.getResultCode() == ResultCode.OK)
-                return settingsFromJSON;
-            else {
-                String errorMessage = validateSettingsResultCode.getMessage();
-                GameLogger.getLog().error(errorMessage);
-                throw new HandlerExceptions(errorMessage);
+    public static Settings get() { // need to use a singleton...
+        try (InputStream inputStream = Settings.class.getResourceAsStream(GAME_SETTINGS_JSON)) {
+            assert inputStream != null;
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+                Settings settingsFromJSON = new Gson().fromJson(bufferedReader, Settings.class);
+                Result validateSettingsResultCode = CheckInputData.check(settingsFromJSON);
+                if (validateSettingsResultCode.getResultCode() == ResultCode.OK)
+                    return settingsFromJSON;
+                else {
+                    String errorMessage = validateSettingsResultCode.getMessage();
+                    GameLogger.getLog().error(errorMessage);
+                    throw new HandlerExceptions(errorMessage);
+                }
             }
         } catch (IOException e) {
             GameLogger.getLog().error(e.getMessage(), e);
-            throw new HandlerExceptions(FILE_ERROR + pathToSettingsFile, e.getStackTrace());
+            throw new HandlerExceptions(FILE_ERROR + GAME_SETTINGS_JSON, e.getStackTrace());
         }
-    }
-
-    public String getPathToOrganismsProperty() {
-        return PathFinder.convertPathForAllOS(pathToOrganismsProperty);
     }
 
     private String getColor(String color) {

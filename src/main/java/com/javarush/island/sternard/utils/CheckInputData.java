@@ -73,7 +73,7 @@ public class CheckInputData {
             // path/to/file.json
             // file.json
             return (declaredField.getName().equals("pathToOrganismsProperty")) &&
-                    (!val.matches("^(\\w+\\/)*(\\w+\\.json)$"));
+                    (!val.matches("^\\/?(\\w+\\/)*(\\w+\\.json)$"));
         }
         return false;
     }
