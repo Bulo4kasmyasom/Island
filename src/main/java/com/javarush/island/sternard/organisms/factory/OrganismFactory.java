@@ -55,13 +55,12 @@ public class OrganismFactory {
     private static Organism getNewOrganism(String simpleClassName, Organism organism, String name, Double weight,
                                            Integer maxOnCell, String icon, String organismMainType, String organismType) {
 
-        if (organismMainType.equals("animal")) { // for animals
+        if (organismMainType.equals("animal")) {
             int speed = organism.getSpeed();
             double energy = organism.getEnergy();
             double maxFoodForSatiety = organism.getMaxFoodForSatiety();
             Map<String, Integer> possibleFood = organism.getPossibleFood();
 
-            //TODO need refactoring, but i do not have any idea how...
             Class<?>[] classes = {String.class, double.class, int.class, String.class, String.class, String.class,
                     Map.class, int.class, double.class, double.class};
             Object[] objects = {name, weight, maxOnCell, icon, organismMainType, organismType, possibleFood,

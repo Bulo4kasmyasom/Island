@@ -88,7 +88,6 @@ public class Controller {
                     .getConstructor()
                     .newInstance();
 
-            // TODO need refactoring, but i do not have any idea how...
             if (simpleClassNameAction.equals("Move")) {
                 Method method = action.getClass()
                         .getDeclaredMethod("action", Animal.class, Cell.class, Cell[][].class, int.class, int.class);
@@ -97,7 +96,6 @@ public class Controller {
                 Method method = action.getClass().getDeclaredMethod("action", Animal.class, Cell.class);
                 method.invoke(action, animal, cell);
             }
-            ////////
 
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
