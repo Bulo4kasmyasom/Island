@@ -25,17 +25,22 @@ public class OrganismFactory {
 
     public static Map<String, Organism> organismMapFromJson() {
         String pathToOrganismsProperty = Settings.get().getPathToOrganismsProperty();
+        String message = FILE_ERROR + pathToOrganismsProperty;
 
         try (InputStream inputStream = OrganismFactory.class.getResourceAsStream(pathToOrganismsProperty)) {
-            assert inputStream != null;
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
-                Type type = new TypeToken<Map<String, Organism>>() {
-                }.getType();
-                return new Gson().fromJson(bufferedReader, type);
+            if (inputStream != null) {
+                try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+                    Type type = new TypeToken<Map<String, Organism>>() {
+                    }.getType();
+                    return new Gson().fromJson(bufferedReader, type);
+                }
+            } else {
+                GameLogger.getLog().error(message);
+                throw new HandlerExceptions(message);
             }
         } catch (IOException e) {
             GameLogger.getLog().error(e.getMessage(), e);
-            throw new HandlerExceptions(FILE_ERROR + pathToOrganismsProperty, e.getStackTrace());
+            throw new HandlerExceptions(message, e.getStackTrace());
         }
     }
 

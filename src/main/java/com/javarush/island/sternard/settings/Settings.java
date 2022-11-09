@@ -139,22 +139,27 @@ public class Settings {
 
     public static Settings get() { // need to use a singleton...
         try (InputStream inputStream = Settings.class.getResourceAsStream(GAME_SETTINGS_JSON)) {
-            assert inputStream != null;
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
-                Settings settingsFromJSON = new Gson().fromJson(bufferedReader, Settings.class);
-                Result validateSettingsResultCode = CheckInputData.check(settingsFromJSON);
-                if (validateSettingsResultCode.getResultCode() == ResultCode.OK)
-                    return settingsFromJSON;
-                else {
-                    String errorMessage = validateSettingsResultCode.getMessage();
-                    GameLogger.getLog().error(errorMessage);
-                    throw new HandlerExceptions(errorMessage);
+            if (inputStream != null) {
+                try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+                    Settings settingsFromJSON = new Gson().fromJson(bufferedReader, Settings.class);
+                    Result validateSettingsResultCode = CheckInputData.check(settingsFromJSON);
+                    if (validateSettingsResultCode.getResultCode() == ResultCode.OK)
+                        return settingsFromJSON;
+                    else {
+                        String errorMessage = validateSettingsResultCode.getMessage();
+                        GameLogger.getLog().error(errorMessage);
+                        throw new HandlerExceptions(errorMessage);
+                    }
                 }
+            } else {
+                GameLogger.getLog().error(FILE_ERROR + GAME_SETTINGS_JSON);
+                throw new HandlerExceptions(FILE_ERROR + GAME_SETTINGS_JSON);
             }
         } catch (IOException e) {
             GameLogger.getLog().error(e.getMessage(), e);
             throw new HandlerExceptions(FILE_ERROR + GAME_SETTINGS_JSON, e.getStackTrace());
         }
+
     }
 
     private String getColor(String color) {
